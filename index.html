@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" class="dark" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23000000%22/><text y=%2266%22 x=%2250%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2256%22 fill=%22%23ffffff%22>A</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Adarsh M — Software Engineer | Full-Stack Developer | AI Applications</title>
+    <meta name="description" content="Portfolio of Adarsh M, Computer Science graduate specializing in full-stack web applications, offline-first systems, and AI engineering." />
+    <meta name="author" content="Adarsh M" />
+    <meta name="keywords" content="Adarsh M, Software Engineer, Full-Stack Developer, AI Applications, React, TypeScript, Node.js, FastAPI, SRMIST" />
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adarsh M — Software Engineer | Full-Stack Developer | AI Applications" />
+    <meta property="og:description" content="Explore selected engineering projects, offline-first architectures, and AI systems built by Adarsh M." />
+    <meta property="og:url" content="https://adarshm-portfolio.web.app/" />
+
+    <!-- Google Fonts: Inter, Space Grotesk, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Zero-flash inline theme initializer -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('theme');
+          var theme = 'dark';
+          if (saved === 'light' || saved === 'dark') {
+            theme = saved;
+          } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            theme = 'light';
+          }
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme', 'light');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-bg-main text-text-primary font-sans antialiased selection:bg-neutral-800 selection:text-white dark:selection:bg-neutral-200 dark:selection:text-black min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
