@@ -131,7 +131,7 @@ export const StackPage: React.FC<StackPageProps> = ({ onBack, onNavigateToProjec
   }, [onBack]);
 
   return (
-    <article className="py-8 space-y-12">
+    <article className="pt-24 sm:pt-28 pb-12 space-y-12">
       {/* Top Breadcrumb & Return Action */}
       <div className="flex items-center justify-between border-b border-border-main pb-4 animate-hero-fade-up" style={{ animationDelay: '100ms' }}>
         <button
@@ -148,16 +148,16 @@ export const StackPage: React.FC<StackPageProps> = ({ onBack, onNavigateToProjec
       </div>
 
       {/* Hero Header */}
-      <header className="space-y-4">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-border-main bg-panel-bg text-[11px] font-mono text-text-secondary animate-hero-badge" style={{ animationDelay: '220ms' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+      <header className="space-y-5">
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-main bg-panel-bg text-xs font-mono text-text-secondary animate-hero-badge" style={{ animationDelay: '220ms' }}>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Architecture & Tooling Dossier</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-text-primary">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight text-text-primary leading-[1.12]">
             <LetterReveal text="Technology Stack & Architecture" baseDelay={320} staggerMs={22} />
           </h1>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-3xl font-normal">
             <WordReveal 
               text="A comprehensive breakdown of the languages, frameworks, distributed databases, AI retrieval pipelines, and security mechanisms I employ in production."
               baseDelay={650}
@@ -167,22 +167,22 @@ export const StackPage: React.FC<StackPageProps> = ({ onBack, onNavigateToProjec
         </div>
 
         {/* High-Level Architecture Metrics */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 pt-2">
-          <div className="p-2.5 sm:p-3.5 rounded-xl border border-border-main bg-panel-bg space-y-1 animate-hero-card" style={{ animationDelay: '950ms' }}>
-            <span className="text-[10px] sm:text-[11px] font-mono text-text-muted block">Primary Languages</span>
-            <span className="text-xs sm:text-sm font-bold text-text-primary block font-mono">TypeScript & Python</span>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5 pt-2">
+          <div className="p-3.5 sm:p-4 rounded-xl border border-border-main bg-panel-bg/90 space-y-1.5 shadow-2xs animate-hero-card" style={{ animationDelay: '950ms' }}>
+            <span className="text-xs font-mono text-text-muted block">Primary Languages</span>
+            <span className="text-sm sm:text-base font-bold text-text-primary block font-mono">TypeScript & Python</span>
           </div>
-          <div className="p-2.5 sm:p-3.5 rounded-xl border border-border-main bg-panel-bg space-y-1 animate-hero-card" style={{ animationDelay: '1080ms' }}>
-            <span className="text-[10px] sm:text-[11px] font-mono text-text-muted block">Data Strategy</span>
-            <span className="text-xs sm:text-sm font-bold text-text-primary block font-mono">Offline-First & SQL</span>
+          <div className="p-3.5 sm:p-4 rounded-xl border border-border-main bg-panel-bg/90 space-y-1.5 shadow-2xs animate-hero-card" style={{ animationDelay: '1080ms' }}>
+            <span className="text-xs font-mono text-text-muted block">Data Strategy</span>
+            <span className="text-sm sm:text-base font-bold text-text-primary block font-mono">Offline-First & SQL</span>
           </div>
-          <div className="p-2.5 sm:p-3.5 rounded-xl border border-border-main bg-panel-bg space-y-1 animate-hero-card" style={{ animationDelay: '1210ms' }}>
-            <span className="text-[10px] sm:text-[11px] font-mono text-text-muted block">Real-Time Core</span>
-            <span className="text-xs sm:text-sm font-bold text-text-primary block font-mono">WebSockets & Events</span>
+          <div className="p-3.5 sm:p-4 rounded-xl border border-border-main bg-panel-bg/90 space-y-1.5 shadow-2xs animate-hero-card" style={{ animationDelay: '1210ms' }}>
+            <span className="text-xs font-mono text-text-muted block">Real-Time Core</span>
+            <span className="text-sm sm:text-base font-bold text-text-primary block font-mono">WebSockets & Events</span>
           </div>
-          <div className="p-2.5 sm:p-3.5 rounded-xl border border-border-main bg-panel-bg space-y-1 animate-hero-card" style={{ animationDelay: '1340ms' }}>
-            <span className="text-[10px] sm:text-[11px] font-mono text-text-muted block">Security Philosophy</span>
-            <span className="text-xs sm:text-sm font-bold text-text-primary block font-mono">Zero-Trust & RBAC</span>
+          <div className="p-3.5 sm:p-4 rounded-xl border border-border-main bg-panel-bg/90 space-y-1.5 shadow-2xs animate-hero-card" style={{ animationDelay: '1340ms' }}>
+            <span className="text-xs font-mono text-text-muted block">Security Philosophy</span>
+            <span className="text-sm sm:text-base font-bold text-text-primary block font-mono">Zero-Trust & RBAC</span>
           </div>
         </div>
       </header>
@@ -194,44 +194,44 @@ export const StackPage: React.FC<StackPageProps> = ({ onBack, onNavigateToProjec
           return (
             <div 
               key={pillar.category}
-              className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg space-y-5 transition-all hover:border-text-primary/30 animate-hero-card"
+              className="p-6 sm:p-7 rounded-2xl border border-border-main bg-panel-bg/90 space-y-5 transition-all hover:border-text-primary/30 shadow-xs animate-hero-card"
               style={{ animationDelay: `${1500 + idx * 180}ms` }}
             >
               {/* Category Header */}
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border-main/60 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className={`p-2.5 rounded-xl ${pillar.bgAccent} border ${pillar.borderAccent}`}>
+                <div className="flex items-center gap-3.5">
+                  <div className={`p-2.5 rounded-xl ${pillar.bgAccent} border ${pillar.borderAccent} shadow-2xs`}>
                     <Icon className={`w-5 h-5 ${pillar.accent}`} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-text-muted block">
+                    <span className="text-xs font-mono uppercase tracking-wider text-text-muted block font-semibold">
                       Tier 0{idx + 1}
                     </span>
-                    <h2 className="text-base sm:text-lg font-bold font-display text-text-primary">
+                    <h2 className="text-lg sm:text-xl font-bold font-display text-text-primary">
                       {pillar.category}
                     </h2>
                   </div>
                 </div>
               </div>
 
-              <p className="text-sm text-text-secondary leading-relaxed">
+              <p className="text-[15px] sm:text-base text-text-secondary leading-relaxed">
                 {pillar.description}
               </p>
 
               {/* Technologies Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {pillar.technologies.map((tech) => (
                   <div 
                     key={tech.name}
-                    className="p-3 rounded-xl border border-border-subtle bg-bg-main/50 space-y-1"
+                    className="p-3.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-1.5"
                   >
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                      <span className="text-xs font-mono font-semibold text-text-primary">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span className="text-sm font-mono font-bold text-text-primary">
                         {tech.name}
                       </span>
                     </div>
-                    <p className="text-[11px] text-text-secondary font-mono pl-5">
+                    <p className="text-xs sm:text-[13px] text-text-secondary font-mono pl-6 leading-relaxed">
                       {tech.role}
                     </p>
                   </div>
@@ -239,11 +239,11 @@ export const StackPage: React.FC<StackPageProps> = ({ onBack, onNavigateToProjec
               </div>
 
               {/* Architecture Decision / Engineering Rationale */}
-              <div className="p-3.5 rounded-xl border border-border-subtle bg-badge-bg/40 text-xs font-mono text-text-secondary space-y-1">
-                <span className="text-[10px] uppercase tracking-wider text-text-muted font-bold block">
+              <div className="p-4 rounded-xl border border-border-subtle bg-badge-bg/50 text-xs sm:text-sm font-mono text-text-secondary space-y-1.5">
+                <span className="text-xs uppercase tracking-wider text-text-muted font-bold block">
                   Engineering Rationale:
                 </span>
-                <p className="leading-relaxed">
+                <p className="leading-relaxed text-xs sm:text-[13px]">
                   {pillar.philosophy}
                 </p>
               </div>
@@ -253,22 +253,22 @@ export const StackPage: React.FC<StackPageProps> = ({ onBack, onNavigateToProjec
       </section>
 
       {/* Global Quick Reference Tags */}
-      <section className="space-y-4 pt-4 border-t border-border-main animate-hero-fade-up" style={{ animationDelay: '2700ms' }}>
-        <h2 className="text-base font-bold font-display text-text-primary flex items-center gap-2">
-          <Layers className="w-4 h-4 text-text-primary" />
+      <section className="space-y-5 pt-4 border-t border-border-main animate-hero-fade-up" style={{ animationDelay: '2700ms' }}>
+        <h2 className="text-xl sm:text-2xl font-bold font-display text-text-primary flex items-center gap-2.5">
+          <Layers className="w-5 h-5 text-text-primary" />
           <span>All Technologies & Competencies Directory</span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {SKILL_CATEGORIES.map((cat) => (
-            <div key={cat.title} className="p-4 rounded-xl border border-border-main bg-panel-bg space-y-2">
-              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-text-primary">
+            <div key={cat.title} className="p-5 rounded-xl border border-border-main bg-panel-bg/90 space-y-2.5 shadow-xs">
+              <h3 className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-text-primary">
                 {cat.title}
               </h3>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-0.5 rounded-md border border-border-subtle bg-bg-main text-[11px] font-mono text-text-secondary"
+                    className="px-3 py-1 rounded-md border border-border-subtle bg-bg-main text-xs font-mono text-text-secondary hover:text-text-primary transition-colors"
                   >
                     {skill}
                   </span>

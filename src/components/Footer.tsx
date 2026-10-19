@@ -14,17 +14,18 @@ export const Footer: React.FC = () => {
     <footer
       ref={ref}
       id="portfolio-footer"
-      className={`pt-6 pb-24 md:pb-12 border-t border-border-main text-xs text-text-secondary font-mono relative ${
-        isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
-      }`}
-      style={{ animationDelay: '100ms' }}
+      className="pt-6 pb-24 md:pb-12 border-t border-border-main text-xs text-text-secondary font-mono relative"
     >
       {/* Walking Torch Platform Anchor along the Footer Ground Line */}
       <div
         id="footer-ground-platform"
         className="absolute top-0 left-0 w-full h-[1px] pointer-events-none select-none"
       />
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div
+        className={`flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-700 ${
+          isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}
+      >
         
         {/* Left: Identity */}
         <div className="flex items-center gap-2">

@@ -36,7 +36,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
   }, [onBack]);
 
   return (
-    <article className="py-8 space-y-12">
+    <article className="pt-24 sm:pt-28 pb-12 space-y-12">
       {/* Top Breadcrumb & Return Action */}
       <div className="flex items-center justify-between border-b border-border-main pb-4 animate-hero-fade-up" style={{ animationDelay: '100ms' }}>
         <button
@@ -53,16 +53,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
       </div>
 
       {/* Hero Header */}
-      <header className="space-y-4">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-border-main bg-panel-bg text-[11px] font-mono text-text-secondary animate-hero-badge" style={{ animationDelay: '220ms' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+      <header className="space-y-5">
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-main bg-panel-bg text-xs font-mono text-text-secondary animate-hero-badge" style={{ animationDelay: '220ms' }}>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Profile & Engineering Dossier</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-text-primary">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight text-text-primary leading-[1.12]">
             <LetterReveal text="About Adarsh M" baseDelay={320} staggerMs={26} />
           </h1>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-3xl font-normal">
             <WordReveal 
               text="Software Engineer specializing in production-ready distributed architectures, full-stack web platforms, cross-platform mobile apps with Flutter, and AI applications."
               baseDelay={650}
@@ -72,47 +72,47 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
         </div>
 
         {/* Quick Highlights Metadata Bar */}
-        <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1 text-xs font-mono">
+        <div className="flex flex-wrap gap-2 pt-1 text-xs sm:text-[13px] font-mono">
           <span 
-            className="px-2.5 sm:px-3 py-1 rounded-md border border-border-main bg-panel-bg text-text-secondary flex items-center gap-1.5 text-[11px] sm:text-xs animate-hero-fade-up" 
+            className="px-3 py-1.5 rounded-lg border border-border-main bg-panel-bg text-text-secondary flex items-center gap-2 animate-hero-fade-up shadow-2xs" 
             style={{ animationDelay: '950ms' }}
           >
-            <GraduationCap className="w-3.5 h-3.5 text-text-primary" />
-            SRMIST CSE (8.76 CGPA)
+            <GraduationCap className="w-4 h-4 text-text-primary shrink-0" />
+            <span>SRMIST CSE (8.76 CGPA)</span>
           </span>
           <span 
-            className="px-2.5 sm:px-3 py-1 rounded-md border border-border-main bg-panel-bg text-text-secondary flex items-center gap-1.5 text-[11px] sm:text-xs animate-hero-fade-up" 
+            className="px-3 py-1.5 rounded-lg border border-border-main bg-panel-bg text-text-secondary flex items-center gap-2 animate-hero-fade-up shadow-2xs" 
             style={{ animationDelay: '1070ms' }}
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-text-primary" />
-            Full-Stack & Mobile Engineer
+            <ShieldCheck className="w-4 h-4 text-text-primary shrink-0" />
+            <span>Full-Stack & Mobile Engineer</span>
           </span>
           <span 
-            className="px-2.5 sm:px-3 py-1 rounded-md border border-border-main bg-panel-bg text-text-secondary flex items-center gap-1.5 text-[11px] sm:text-xs animate-hero-fade-up" 
+            className="px-3 py-1.5 rounded-lg border border-border-main bg-panel-bg text-text-secondary flex items-center gap-2 animate-hero-fade-up shadow-2xs" 
             style={{ animationDelay: '1190ms' }}
           >
-            <Trophy className="w-3.5 h-3.5 text-text-primary" />
-            Top 5 / 50 CyberCarnival CTF
+            <Trophy className="w-4 h-4 text-text-primary shrink-0" />
+            <span>Top 5 / 50 CyberCarnival CTF</span>
           </span>
           <span 
-            className="px-2.5 sm:px-3 py-1 rounded-md border border-border-main bg-panel-bg text-text-secondary flex items-center gap-1.5 text-[11px] sm:text-xs animate-hero-fade-up" 
+            className="px-3 py-1.5 rounded-lg border border-border-main bg-panel-bg text-text-secondary flex items-center gap-2 animate-hero-fade-up shadow-2xs" 
             style={{ animationDelay: '1310ms' }}
           >
-            <Terminal className="w-3.5 h-3.5 text-text-primary" />
-            500+ Commits • 15+ Repos
+            <Terminal className="w-4 h-4 text-text-primary shrink-0" />
+            <span>500+ Commits • 15+ Repos</span>
           </span>
         </div>
       </header>
 
       {/* Section 1: Deep Biography & Narrative */}
       <section className="space-y-4">
-        <h2 className="text-lg font-bold font-display text-text-primary flex items-center gap-2 animate-hero-fade-up" style={{ animationDelay: '1450ms' }}>
-          <Code2 className="w-4 h-4 text-text-primary" />
+        <h2 className="text-xl sm:text-2xl font-bold font-display text-text-primary flex items-center gap-2.5 animate-hero-fade-up" style={{ animationDelay: '1450ms' }}>
+          <Code2 className="w-5 h-5 text-text-primary" />
           <span>Background & Narrative</span>
         </h2>
-        <div className="text-sm sm:text-base text-text-secondary leading-relaxed space-y-4">
+        <div className="text-[15px] sm:text-base text-text-secondary leading-relaxed space-y-4">
           <p className="animate-hero-fade-up" style={{ animationDelay: '1600ms' }}>
-            My fascination with software began with a simple question: <span className="text-text-primary italic">how do distributed systems and client applications remain dependable when network conditions fluctuate and concurrency surges?</span> That curiosity led me to pursue Computer Science and Engineering with a deep focus on scalable full-stack and mobile architectures.
+            My fascination with software began with a simple question: <span className="text-text-primary italic font-medium">how do distributed systems and client applications remain dependable when network conditions fluctuate and concurrency surges?</span> That curiosity led me to pursue Computer Science and Engineering with a deep focus on scalable full-stack and mobile architectures.
           </p>
           <p className="animate-hero-fade-up" style={{ animationDelay: '1800ms' }}>
             Over the course of my engineering work, I developed a strong inclination toward architecting resilient web platforms and cross-platform apps with React, Flutter, Node.js, and Express. Rather than merely assembling UI components, I focus on the full lifecycle of data: from client-side state caching and offline persistence in IndexedDB, through asynchronous outbox synchronization pipelines, to horizontally scalable REST and WebSocket servers in Node.js, Express.js, and Python (FastAPI).
@@ -125,58 +125,58 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
 
       {/* Section 2: Comprehensive Education & Academic Record */}
       <section className="space-y-4">
-        <h2 className="text-lg font-bold font-display text-text-primary flex items-center gap-2 animate-hero-fade-up" style={{ animationDelay: '2150ms' }}>
-          <GraduationCap className="w-4 h-4 text-text-primary" />
+        <h2 className="text-xl sm:text-2xl font-bold font-display text-text-primary flex items-center gap-2.5 animate-hero-fade-up" style={{ animationDelay: '2150ms' }}>
+          <GraduationCap className="w-5 h-5 text-text-primary" />
           <span>Education & Academic Credentials</span>
         </h2>
         
-        <div className="p-5 rounded-2xl border border-border-main bg-panel-bg space-y-4 animate-hero-card" style={{ animationDelay: '2300ms' }}>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 border-b border-border-main/60 pb-3">
+        <div className="p-6 sm:p-7 rounded-2xl border border-border-main bg-panel-bg/90 shadow-xs space-y-5 animate-hero-card" style={{ animationDelay: '2300ms' }}>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-border-main/60 pb-4">
             <div>
-              <h3 className="text-base font-bold text-text-primary">
+              <h3 className="text-lg sm:text-xl font-bold text-text-primary">
                 {PROFILE.education.institution}
               </h3>
-              <p className="text-xs font-mono text-text-secondary">
+              <p className="text-sm font-mono text-text-secondary mt-0.5">
                 {PROFILE.education.degree}
               </p>
             </div>
             <div className="text-left sm:text-right mt-1 sm:mt-0">
-              <span className="inline-block px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-semibold">
+              <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs sm:text-[13px] font-semibold border border-emerald-500/20">
                 CGPA: {PROFILE.education.cgpa}
               </span>
-              <p className="text-[11px] font-mono text-text-muted mt-0.5">
+              <p className="text-xs font-mono text-text-muted mt-1">
                 {PROFILE.education.period}
               </p>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">
+          <div className="space-y-3">
+            <h4 className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-text-primary font-mono">
               Specialization & Key Coursework
             </h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono text-text-secondary">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs sm:text-sm font-mono text-text-secondary">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>Cyber Security</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>Distributed Systems</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>Cryptography & PKI</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>Data Structures & Algo</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>Database Internals</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>Cloud & Network Security</span>
               </div>
             </div>
@@ -186,55 +186,55 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
 
       {/* Section 3: Cybersecurity Focus & Architecture Philosophy */}
       <section className="space-y-4">
-        <h2 className="text-lg font-bold font-display text-text-primary flex items-center gap-2 animate-hero-fade-up" style={{ animationDelay: '2450ms' }}>
-          <ShieldCheck className="w-4 h-4 text-text-primary" />
+        <h2 className="text-xl sm:text-2xl font-bold font-display text-text-primary flex items-center gap-2.5 animate-hero-fade-up" style={{ animationDelay: '2450ms' }}>
+          <ShieldCheck className="w-5 h-5 text-text-primary" />
           <span>Security & Systems Architecture Philosophy</span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="p-4 rounded-xl border border-border-main bg-panel-bg space-y-2 animate-hero-card" style={{ animationDelay: '2550ms' }}>
+          <div className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg/90 hover:border-text-primary/30 transition-all duration-200 shadow-xs space-y-2.5 animate-hero-card" style={{ animationDelay: '2550ms' }}>
             <div className="flex items-center gap-2 text-text-primary">
-              <Lock className="w-4 h-4" />
-              <h3 className="text-xs font-bold font-mono uppercase tracking-wide">
+              <Lock className="w-4 h-4 text-emerald-500" />
+              <h3 className="text-sm sm:text-base font-bold font-mono uppercase tracking-wide">
                 Principle of Least Privilege
               </h3>
             </div>
-            <p className="text-xs text-text-secondary leading-relaxed">
+            <p className="text-sm text-text-secondary leading-relaxed">
               Enforcing rigid multi-tier Role-Based Access Control (Owner, Member, Viewer) at both API route handlers and database query layers, ensuring zero unauthorized escalation vectors.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-border-main bg-panel-bg space-y-2 animate-hero-card" style={{ animationDelay: '2700ms' }}>
+          <div className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg/90 hover:border-text-primary/30 transition-all duration-200 shadow-xs space-y-2.5 animate-hero-card" style={{ animationDelay: '2700ms' }}>
             <div className="flex items-center gap-2 text-text-primary">
-              <Cpu className="w-4 h-4" />
-              <h3 className="text-xs font-bold font-mono uppercase tracking-wide">
+              <Cpu className="w-4 h-4 text-emerald-500" />
+              <h3 className="text-sm sm:text-base font-bold font-mono uppercase tracking-wide">
                 Cryptographic Token Auth
               </h3>
             </div>
-            <p className="text-xs text-text-secondary leading-relaxed">
+            <p className="text-sm text-text-secondary leading-relaxed">
               Implementing HTTP-only, SameSite strict cookie storage for JWT authentication to insulate client state from XSS exfiltration and CSRF attack surfaces.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-border-main bg-panel-bg space-y-2 animate-hero-card" style={{ animationDelay: '2850ms' }}>
+          <div className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg/90 hover:border-text-primary/30 transition-all duration-200 shadow-xs space-y-2.5 animate-hero-card" style={{ animationDelay: '2850ms' }}>
             <div className="flex items-center gap-2 text-text-primary">
-              <Layers className="w-4 h-4" />
-              <h3 className="text-xs font-bold font-mono uppercase tracking-wide">
+              <Layers className="w-4 h-4 text-emerald-500" />
+              <h3 className="text-sm sm:text-base font-bold font-mono uppercase tracking-wide">
                 Offline-First Data Sync
               </h3>
             </div>
-            <p className="text-xs text-text-secondary leading-relaxed">
+            <p className="text-sm text-text-secondary leading-relaxed">
               Pioneering robust local client persistence via IndexedDB (Dexie.js) paired with background outbox synchronization that reconciles network disconnects deterministically.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-border-main bg-panel-bg space-y-2 animate-hero-card" style={{ animationDelay: '3000ms' }}>
+          <div className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg/90 hover:border-text-primary/30 transition-all duration-200 shadow-xs space-y-2.5 animate-hero-card" style={{ animationDelay: '3000ms' }}>
             <div className="flex items-center gap-2 text-text-primary">
-              <Terminal className="w-4 h-4" />
-              <h3 className="text-xs font-bold font-mono uppercase tracking-wide">
+              <Terminal className="w-4 h-4 text-emerald-500" />
+              <h3 className="text-sm sm:text-base font-bold font-mono uppercase tracking-wide">
                 Deterministic Validation
               </h3>
             </div>
-            <p className="text-xs text-text-secondary leading-relaxed">
+            <p className="text-sm text-text-secondary leading-relaxed">
               Strict runtime schema sanitization, bounded parameter checks, and predictable error handling to ensure production servers never crash on adversarial payloads.
             </p>
           </div>
@@ -243,46 +243,46 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
 
       {/* Section 4: Competitive Achievements & Milestones */}
       <section className="space-y-4">
-        <h2 className="text-lg font-bold font-display text-text-primary flex items-center gap-2 animate-hero-fade-up" style={{ animationDelay: '3150ms' }}>
-          <Trophy className="w-4 h-4 text-text-primary" />
+        <h2 className="text-xl sm:text-2xl font-bold font-display text-text-primary flex items-center gap-2.5 animate-hero-fade-up" style={{ animationDelay: '3150ms' }}>
+          <Trophy className="w-5 h-5 text-text-primary" />
           <span>Competitions & Milestones</span>
         </h2>
         
-        <div className="space-y-3">
-          <div className="p-4 rounded-xl border border-border-main bg-panel-bg flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-hero-card" style={{ animationDelay: '3300ms' }}>
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+        <div className="space-y-3.5">
+          <div className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg/90 hover:border-text-primary/30 transition-all duration-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 animate-hero-card" style={{ animationDelay: '3300ms' }}>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
                   FINALIST • TOP 5
                 </span>
-                <h3 className="text-sm font-bold text-text-primary">
+                <h3 className="text-base sm:text-lg font-bold text-text-primary">
                   CyberCarnival CTF Finals
                 </h3>
               </div>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <p className="text-sm text-text-secondary leading-relaxed">
                 Ranked in the top 5 out of 50 competitive collegiate teams, solving rapid-fire challenges in web exploitation, binary reverse engineering, forensics, and cryptanalysis.
               </p>
             </div>
-            <span className="text-xs font-mono text-text-muted shrink-0">
+            <span className="text-xs font-mono text-text-muted shrink-0 px-2.5 py-1 rounded bg-bg-main border border-border-subtle">
               Top 10%
             </span>
           </div>
 
-          <div className="p-4 rounded-xl border border-border-main bg-panel-bg flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-hero-card" style={{ animationDelay: '3450ms' }}>
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
+          <div className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg/90 hover:border-text-primary/30 transition-all duration-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 animate-hero-card" style={{ animationDelay: '3450ms' }}>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
                   OPEN SOURCE
                 </span>
-                <h3 className="text-sm font-bold text-text-primary">
+                <h3 className="text-base sm:text-lg font-bold text-text-primary">
                   500+ Commits & 15+ Engineered Repositories
                 </h3>
               </div>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <p className="text-sm text-text-secondary leading-relaxed">
                 Maintained consistent daily engineering momentum building full-stack web platforms, distributed sync architectures, and AI streaming applications on GitHub.
               </p>
             </div>
-            <span className="text-xs font-mono text-text-muted shrink-0">
+            <span className="text-xs font-mono text-text-muted shrink-0 px-2.5 py-1 rounded bg-bg-main border border-border-subtle">
               Active
             </span>
           </div>
@@ -291,22 +291,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
 
       {/* Section 5: Signature Work Reference */}
       <section className="space-y-4">
-        <h2 className="text-lg font-bold font-display text-text-primary flex items-center gap-2 animate-hero-fade-up" style={{ animationDelay: '3600ms' }}>
-          <Layers className="w-4 h-4 text-text-primary" />
+        <h2 className="text-xl sm:text-2xl font-bold font-display text-text-primary flex items-center gap-2.5 animate-hero-fade-up" style={{ animationDelay: '3600ms' }}>
+          <Layers className="w-5 h-5 text-text-primary" />
           <span>Signature Engineering Systems</span>
         </h2>
-        <div className="space-y-3">
+        <div className="space-y-3.5">
           {PROJECTS.map((project, idx) => (
             <div
               key={project.id}
-              className="p-4 rounded-xl border border-border-main bg-panel-bg hover:border-text-primary/40 transition-colors space-y-2 animate-hero-card"
+              className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg/90 hover:border-text-primary/40 transition-colors space-y-3 shadow-xs animate-hero-card"
               style={{ animationDelay: `${3750 + idx * 150}ms` }}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
-                  <h3 className="text-sm font-bold text-text-primary flex items-center gap-2">
-                    {project.title}
-                    <span className="text-[11px] font-normal text-text-muted font-mono">
+                  <h3 className="text-base sm:text-lg font-bold text-text-primary flex items-center gap-2 flex-wrap">
+                    <span>{project.title}</span>
+                    <span className="text-xs sm:text-sm font-normal text-text-muted font-mono">
                       — {project.subtitle}
                     </span>
                   </h3>
@@ -317,7 +317,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-mono text-text-secondary hover:text-text-primary flex items-center gap-1"
+                      className="px-2.5 py-1 rounded-md border border-border-main bg-bg-main hover:border-text-primary text-xs font-mono text-text-secondary hover:text-text-primary flex items-center gap-1 transition-colors"
                     >
                       <span>Live</span>
                       <ExternalLink className="w-3 h-3" />
@@ -328,21 +328,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-mono text-text-secondary hover:text-text-primary flex items-center gap-1"
+                      className="p-1.5 rounded-md border border-border-main bg-bg-main hover:border-text-primary text-text-secondary hover:text-text-primary flex items-center transition-colors"
+                      aria-label="GitHub Repository"
                     >
                       <GithubIcon className="w-3.5 h-3.5" />
                     </a>
                   )}
                 </div>
               </div>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <p className="text-sm text-text-secondary leading-relaxed">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 rounded text-[10px] font-mono border border-border-subtle bg-bg-main text-text-muted"
+                    className="px-2.5 py-1 rounded text-xs font-mono border border-border-subtle bg-bg-main text-text-muted"
                   >
                     {tag}
                   </span>

@@ -35,6 +35,7 @@ export const Hero: React.FC = () => {
   const greetingIndexRef = useRef(0);
   const isHoveredRef = useRef(false);
   const autoTimerRef = useRef<number | null>(null);
+  const scrambleTimerRef = useRef<number | null>(null);
 
   // Synchronize greetingIndex ref
   useEffect(() => {
@@ -65,7 +66,11 @@ export const Hero: React.FC = () => {
     let iteration = 0;
     const maxIterations = 5;
 
-    const interval = setInterval(() => {
+    if (scrambleTimerRef.current) {
+      clearInterval(scrambleTimerRef.current);
+    }
+
+    scrambleTimerRef.current = window.setInterval(() => {
       iteration += 1;
       const progress = iteration / maxIterations;
 
@@ -83,7 +88,10 @@ export const Hero: React.FC = () => {
       setDisplayText(scrambled);
 
       if (iteration >= maxIterations + 1) {
-        clearInterval(interval);
+        if (scrambleTimerRef.current) {
+          clearInterval(scrambleTimerRef.current);
+          scrambleTimerRef.current = null;
+        }
         setDisplayText(targetGreeting.text);
         setGreetingIndex(nextIndex);
         greetingIndexRef.current = nextIndex;
@@ -98,7 +106,7 @@ export const Hero: React.FC = () => {
     if (autoTimerRef.current) {
       clearInterval(autoTimerRef.current);
     }
-    autoTimerRef.current = setInterval(() => {
+    autoTimerRef.current = window.setInterval(() => {
       if (!isHoveredRef.current && !document.hidden && !isScramblingRef.current) {
         cycleGreeting(false);
       }
@@ -121,6 +129,7 @@ export const Hero: React.FC = () => {
 
     return () => {
       if (autoTimerRef.current) clearInterval(autoTimerRef.current);
+      if (scrambleTimerRef.current) clearInterval(scrambleTimerRef.current);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [restartAutoTimer]);

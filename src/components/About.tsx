@@ -13,10 +13,10 @@ export const About: React.FC<AboutProps> = ({ onOpenFullAbout }) => {
   return (
     <section ref={ref} id="about" className="py-8 space-y-6">
       {/* Section Header */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3.5">
         <h2 
           onClick={onOpenFullAbout}
-          className={`text-xl sm:text-2xl font-bold font-display tracking-tight text-text-primary whitespace-nowrap ${
+          className={`text-2xl sm:text-3xl font-bold font-display tracking-tight text-text-primary whitespace-nowrap ${
             onOpenFullAbout ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''
           }`}
           title={onOpenFullAbout ? "Click to view full about page" : undefined}
@@ -31,9 +31,9 @@ export const About: React.FC<AboutProps> = ({ onOpenFullAbout }) => {
       </div>
 
       {/* Recruiter-Friendly Crisp Narrative with Balanced Hierarchy */}
-      <div className="space-y-3">
+      <div className="space-y-3.5">
         <p
-          className={`text-base sm:text-[16px] text-text-primary font-medium leading-relaxed ${
+          className={`text-base sm:text-lg text-text-primary font-medium leading-relaxed ${
             isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
           }`}
           style={{ animationDelay: '300ms' }}
@@ -41,7 +41,7 @@ export const About: React.FC<AboutProps> = ({ onOpenFullAbout }) => {
           I'm a <span className="font-semibold text-text-primary">Full-Stack Software Engineer</span> building scalable web platforms, cross-platform mobile apps, distributed backends, and AI products.
         </p>
         <p
-          className={`text-sm sm:text-[15px] text-text-secondary leading-relaxed ${
+          className={`text-[15px] sm:text-base text-text-secondary leading-relaxed font-sans ${
             isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
           }`}
           style={{ animationDelay: '500ms' }}
@@ -59,7 +59,7 @@ export const About: React.FC<AboutProps> = ({ onOpenFullAbout }) => {
           style={{ animationDelay: '700ms' }}
         >
           {/* Live Availability Status */}
-          <div className="flex items-center gap-2 text-xs font-mono text-text-muted">
+          <div className="flex items-center gap-2 text-xs sm:text-[13px] font-mono text-text-muted">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -70,7 +70,7 @@ export const About: React.FC<AboutProps> = ({ onOpenFullAbout }) => {
           {/* Premium Unboxed Editorial Deep-Dive Link */}
           <button
             onClick={onOpenFullAbout}
-            className="group inline-flex items-center gap-2 text-xs sm:text-[13px] font-mono text-text-primary hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors cursor-pointer self-start sm:self-auto py-1"
+            className="group inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-text-primary hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors cursor-pointer self-start sm:self-auto py-1"
             aria-label="Read full background, education and achievements"
           >
             <span className="relative font-medium tracking-tight">

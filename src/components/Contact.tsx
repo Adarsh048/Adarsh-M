@@ -125,14 +125,14 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
 
         {/* Functional Interactive Direct Message Form */}
         <div className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg space-y-4 shadow-xs">
-          <div className="flex items-center justify-between border-b border-border-subtle pb-3">
+          <div className="flex items-center justify-between border-b border-border-subtle pb-3.5">
             <div className="flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-text-primary" />
-              <h3 className="text-sm font-semibold text-text-primary">
+              <MessageSquare className="w-4 h-4 text-emerald-500" />
+              <h3 className="text-base font-bold text-text-primary font-display">
                 Send a Direct Message
               </h3>
             </div>
-            <span className="text-[11px] font-mono text-text-muted">
+            <span className="text-xs font-mono text-text-muted">
               Direct to inbox
             </span>
           </div>
@@ -140,12 +140,12 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
           {submitted ? (
             <div className="py-8 text-center space-y-2">
               <div className="size-10 rounded-full border border-border-main bg-bg-main text-text-primary flex items-center justify-center mx-auto mb-2">
-                <Check className="w-5 h-5" />
+                <Check className="w-5 h-5 text-emerald-500" />
               </div>
-              <h4 className="text-sm font-semibold text-text-primary">
+              <h4 className="text-base font-semibold text-text-primary font-display">
                 Opening Mail Client
               </h4>
-              <p className="text-xs text-text-secondary max-w-sm mx-auto">
+              <p className="text-sm text-text-secondary max-w-sm mx-auto font-sans">
                 Your email client is opening with pre-filled details. Thank you for reaching out, Adarsh will respond promptly.
               </p>
               <button
@@ -153,16 +153,16 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                   setSubmitted(false);
                   setFormData({ name: '', email: '', subject: '', message: '' });
                 }}
-                className="text-xs font-mono text-text-primary hover:underline pt-2 inline-block"
+                className="text-xs font-mono text-text-primary hover:underline pt-2 inline-block cursor-pointer"
               >
                 Send another message
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label className="text-[11px] font-mono text-text-secondary block">
+            <form onSubmit={handleSubmit} className="space-y-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div className="space-y-1.5">
+                  <label className="text-xs sm:text-[13px] font-mono text-text-secondary block font-medium">
                     Your Name *
                   </label>
                   <input
@@ -171,12 +171,12 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Jane Doe"
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
                   />
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-[11px] font-mono text-text-secondary block">
+                <div className="space-y-1.5">
+                  <label className="text-xs sm:text-[13px] font-mono text-text-secondary block font-medium">
                     Your Email *
                   </label>
                   <input
@@ -185,13 +185,13 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="jane@company.com"
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <label className="text-[11px] font-mono text-text-secondary block">
+              <div className="space-y-1.5">
+                <label className="text-xs sm:text-[13px] font-mono text-text-secondary block font-medium">
                   Subject
                 </label>
                 <input
@@ -199,12 +199,12 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="Software Engineering Opportunity / Project Discussion"
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="text-[11px] font-mono text-text-secondary block">
+              <div className="space-y-1.5">
+                <label className="text-xs sm:text-[13px] font-mono text-text-secondary block font-medium">
                   Message *
                 </label>
                 <textarea
@@ -213,16 +213,16 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Hi Adarsh, I came across your portfolio and would love to chat about..."
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors resize-none"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors resize-none leading-relaxed"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-bold bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 hover:opacity-85 transition-opacity"
+                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 hover:opacity-85 transition-opacity shadow-xs cursor-pointer"
               >
                 <span>Dispatch Email</span>
-                <Send className="w-3.5 h-3.5" />
+                <Send className="w-4 h-4" />
               </button>
             </form>
           )}

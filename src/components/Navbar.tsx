@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
       {/* ================= DESKTOP FLOATING PILL NAVBAR ================= */}
       <nav 
         id="desktop-nav"
-        className="hidden md:flex fixed top-7 inset-x-0 mx-auto max-w-fit rounded-full border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-[#121212]/95 backdrop-blur-xl shadow-xl shadow-neutral-900/5 dark:shadow-black/50 z-[5000] px-7 py-3 items-center gap-7 sm:gap-8 transition-all duration-300 animate-nav-slide-down"
+        className="hidden md:flex fixed top-7 inset-x-0 mx-auto max-w-fit rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-transparent backdrop-blur-md shadow-sm z-[5000] px-7 py-3 items-center gap-7 sm:gap-8 transition-all duration-300 animate-nav-slide-down"
         aria-label="Desktop Navigation"
       >
         {/* Home Outline Icon with Arched Doorway */}
@@ -146,12 +146,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
 
       {/* ================= MOBILE FLOATING BOTTOM DOCK ================= */}
       <div className="block md:hidden">
-        {/* Soft gradient fade on bottom */}
-        <div className="pointer-events-none fixed bottom-0 inset-x-0 h-24 bg-gradient-to-t from-bg-main to-transparent z-30" />
-
         <div 
           id="mobile-dock"
-          className="fixed inset-x-0 bottom-5 z-40 mx-auto w-max max-w-[calc(100vw-1.5rem)] px-4 py-2.5 rounded-full border border-neutral-200/90 dark:border-neutral-800 bg-white/90 dark:bg-[#121212]/95 backdrop-blur-xl shadow-xl shadow-neutral-900/10 dark:shadow-black/60 flex items-center gap-3.5 sm:gap-4.5 transition-colors animate-dock-slide-up"
+          className="fixed inset-x-0 bottom-5 z-40 mx-auto w-max max-w-[calc(100vw-1.5rem)] px-4 py-2.5 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-transparent backdrop-blur-md shadow-sm flex items-center gap-3.5 sm:gap-4.5 transition-colors animate-dock-slide-up"
           aria-label="Mobile Navigation Dock"
         >
           <button

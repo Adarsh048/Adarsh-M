@@ -234,6 +234,7 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
   const lastTimeRef = useRef<number | null>(null);
   const isHoveredRef = useRef<boolean>(false);
   const platformsRef = useRef<Record<PlatformId, PlatformRect> | null>(null);
+  const mainWidthRef = useRef<number>(640);
 
   const isLit = mode !== 'off';
 
@@ -243,6 +244,7 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
     if (!mainElem) return;
 
     isMobileRef.current = window.innerWidth < 640;
+    mainWidthRef.current = mainElem.clientWidth || 640;
     const mainRect = mainElem.getBoundingClientRect();
     const updated: Partial<Record<PlatformId, PlatformRect>> = {};
 
@@ -254,9 +256,25 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
         // Use offsetWidth and offsetHeight to prevent transforms (like scaleX(0)) from breaking platform width
         const width = el.offsetWidth || rect.width;
         const height = el.offsetHeight || rect.height;
+        let x = rect.left - mainRect.left;
+        let y = rect.top - mainRect.top;
+
+        // Transform-proof layout verification for footer platform anchor
+        if (pid === 'footer') {
+          const footerElem = el.parentElement;
+          if (footerElem && mainElem.contains(footerElem)) {
+            const offY = el.offsetTop + footerElem.offsetTop;
+            const offX = el.offsetLeft + footerElem.offsetLeft;
+            if (Math.abs(y - offY) > 8 && offY > 0) {
+              y = offY;
+              x = offX;
+            }
+          }
+        }
+
         updated[pid] = {
-          x: rect.left - mainRect.left,
-          y: rect.top - mainRect.top,
+          x,
+          y,
           width,
           height,
         };
@@ -339,7 +357,7 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
     const targetX = toPlatform === 'about' || toPlatform === 'stack' || toPlatform === 'career'
       ? targetData.x + Math.min(28, targetData.width * 0.15)
       : toPlatform === 'footer'
-      ? targetData.x + (isMobile ? 12 : 20)
+      ? Math.max(targetData.x + 8, Math.min(targetData.x + targetData.width - 45, targetData.x + (isMobile ? 12 : 20)))
       : targetData.x + Math.min(isMobile ? 12 : 16, targetData.width * 0.25);
     const targetY = targetData.y - 56;
 
@@ -411,7 +429,8 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
       }
 
       // 2. Extreme bottom: jump down and land on the footer ground line!
-      if (window.innerHeight + currentScrollY >= (document.documentElement.scrollHeight - 70)) {
+      const isNearBottom = window.innerHeight + currentScrollY >= (document.documentElement.scrollHeight - 160);
+      if (isNearBottom) {
         if (!isJumpingRef.current && currentPlatformRef.current !== 'footer') {
           initiateJump('footer');
         }
@@ -431,7 +450,12 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
       const curPlat = platforms[currentPlatformRef.current];
       if (curPlat) {
         const curScreenY = mainTop + curPlat.y;
-        if (curScreenY >= 50 && curScreenY <= viewportH * 0.72) {
+        if (currentPlatformRef.current === 'footer') {
+          // Terminal base: stay stably on footer line while footer is in view
+          if (curScreenY >= 30 && curScreenY <= viewportH + 60) {
+            return;
+          }
+        } else if (curScreenY >= 50 && curScreenY <= viewportH * 0.75) {
           return;
         }
       }
@@ -820,9 +844,8 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
             tilt = Math.sin(t * Math.PI) * (flip * 12);
           }
 
-          // Clamp within container bounds
-          const mainElem = document.getElementById('portfolio-main');
-          const maxW = mainElem ? mainElem.clientWidth : 640;
+          // Clamp within container bounds (zero DOM reflow overhead)
+          const maxW = mainWidthRef.current || 640;
           currentX = Math.max(4, Math.min(maxW - 40, currentX));
 
           currentPosRef.current = { x: currentX, y: currentY };
@@ -839,7 +862,10 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
             setIsWebActive(false);
             currentPlatformRef.current = jumpDirectionRef.current;
             setCurrentPlatform(jumpDirectionRef.current);
-            const landingPlat = platforms[jumpDirectionRef.current];
+            // Refresh platform measurements on touchdown to guarantee sub-pixel alignment
+            updatePlatforms();
+            const refreshedPlatforms = platformsRef.current || platforms;
+            const landingPlat = refreshedPlatforms[jumpDirectionRef.current];
             const landingOffset = landingPlat
               ? (jumpDirectionRef.current === 'about' || jumpDirectionRef.current === 'stack' || jumpDirectionRef.current === 'career'
                   ? Math.min(28, landingPlat.width * 0.15)
@@ -892,12 +918,17 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
         else {
           // If at footer base: walk till the centre and then wave hand & dialogue "Thank you, stay connected"
           if (currentPlatformRef.current === 'footer') {
-            const footerPlat = platforms.footer;
-            const mainElem = document.getElementById('portfolio-main');
-            const mainWidth = mainElem ? mainElem.clientWidth : 640;
+            let footerPlat: PlatformRect | undefined = platforms.footer;
+            if (!footerPlat) {
+              updatePlatforms();
+              footerPlat = platformsRef.current?.footer;
+            }
+            const mainWidth = mainWidthRef.current || 640;
             const platW = footerPlat ? footerPlat.width : mainWidth;
             const charW = isMobile ? 35 : 47;
-            const centerX = Math.max(20, Math.round((platW - charW) / 2));
+            const minBound = 8;
+            const maxBound = Math.max(minBound + 10, platW - charW - 8);
+            const centerX = Math.max(minBound, Math.min(maxBound, Math.round((platW - charW) / 2)));
 
             if (patrolPosRef.current < centerX) {
               if (stateRef.current !== 'walk_right') {
@@ -919,7 +950,9 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
               }
             }
 
-            const currentX = footerPlat ? footerPlat.x + patrolPosRef.current : patrolPosRef.current;
+            const platLeft = footerPlat ? footerPlat.x : (isMobile ? 16 : 24);
+            const boundedPatrol = Math.max(minBound, Math.min(maxBound, patrolPosRef.current));
+            const currentX = platLeft + boundedPatrol;
             const currentY = footerPlat ? footerPlat.y - 56 : currentPosRef.current.y;
             currentPosRef.current = { x: currentX, y: currentY };
             if (containerRef.current) {
@@ -934,8 +967,7 @@ export const Torch: React.FC<TorchProps> = ({ size = 'sm', className = '' }) => 
 
           const currentPlat = platforms[currentPlatformRef.current];
           if (currentPlat) {
-            const mainElem = document.getElementById('portfolio-main');
-            const mainWidth = mainElem ? mainElem.clientWidth : 640;
+            const mainWidth = mainWidthRef.current || 640;
 
             const minBound = 4;
             const platformMax = Math.max(minBound + 12, currentPlat.width - 36);

@@ -163,7 +163,7 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({
     : ARTICLES.filter(a => a.category === activeCategory);
 
   return (
-    <article className="py-8 space-y-12">
+    <article className="pt-24 sm:pt-28 pb-12 space-y-12">
       {/* Top Return Breadcrumb */}
       <div className="flex items-center justify-between border-b border-border-main pb-4 animate-hero-fade-up" style={{ animationDelay: '100ms' }}>
         <button
@@ -180,32 +180,32 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({
       </div>
 
       {/* Page Header */}
-      <header className="space-y-4">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-border-main bg-panel-bg text-[11px] font-mono text-text-secondary animate-hero-badge" style={{ animationDelay: '200ms' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+      <header className="space-y-5">
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border-main bg-panel-bg text-xs font-mono text-text-secondary animate-hero-badge" style={{ animationDelay: '200ms' }}>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Technical Dispatches & Architectural Notes</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary font-display">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight text-text-primary leading-[1.12]">
             <LetterReveal text="Engineering Blogs" isActive={true} baseDelay={140} staggerMs={24} />
           </h1>
         </div>
 
-        <p className="text-sm sm:text-base text-text-secondary font-mono leading-relaxed max-w-3xl">
+        <p className="text-base sm:text-lg text-text-secondary font-sans leading-relaxed max-w-3xl">
           Deep-dives into offline-first state synchronization, low-latency WebSocket token streaming, grounded RAG architectures, and full-stack software resilience.
         </p>
       </header>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2 border-b border-border-main pb-4">
+      <div className="flex flex-wrap gap-2.5 border-b border-border-main pb-4">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-3 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
+            className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-mono transition-colors cursor-pointer ${
               activeCategory === cat
-                ? 'bg-text-primary text-bg-main font-semibold'
+                ? 'bg-text-primary text-bg-main font-semibold shadow-xs'
                 : 'text-text-secondary hover:text-text-primary hover:bg-panel-hover'
             }`}
           >
@@ -219,50 +219,50 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({
         {filteredArticles.map((article, idx) => (
           <section
             key={article.id}
-            className="p-6 rounded-2xl border border-border-main bg-panel-bg/60 hover:bg-panel-bg transition-all duration-200 space-y-5 animate-hero-fade-up"
+            className="p-6 sm:p-8 rounded-2xl border border-border-main bg-panel-bg space-y-6 shadow-xs animate-hero-fade-up"
             style={{ animationDelay: `${260 + idx * 100}ms` }}
           >
-            <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-text-muted">
-              <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium">
-                <Tag className="w-3.5 h-3.5" />
+            <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-mono text-text-muted">
+              <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold">
+                <Tag className="w-4 h-4" />
                 <span>{article.category}</span>
               </span>
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-1">
-                  <Calendar className="w-3 h-3" />
+                <span className="inline-flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5" />
                   <span>{article.date}</span>
                 </span>
                 <span>•</span>
-                <span className="inline-flex items-center gap-1">
-                  <Clock className="w-3 h-3" />
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5" />
                   <span>{article.readTime}</span>
                 </span>
               </div>
             </div>
 
             <div className="space-y-2">
-              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-text-primary font-display">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary font-display leading-snug">
                 {article.title}
               </h2>
-              <p className="text-xs sm:text-sm text-text-secondary font-mono leading-relaxed">
+              <p className="text-sm sm:text-base text-text-secondary font-mono leading-relaxed">
                 {article.subtitle}
               </p>
             </div>
 
-            <p className="text-sm text-text-secondary font-sans leading-relaxed">
+            <p className="text-[15px] sm:text-base text-text-secondary font-sans leading-relaxed">
               {article.summary}
             </p>
 
             {/* Architectural Highlights */}
-            <div className="p-4 rounded-xl border border-border-subtle bg-bg-main/70 space-y-2">
-              <div className="text-xs font-mono text-text-primary font-semibold flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
+            <div className="p-4 sm:p-5 rounded-xl border border-border-subtle bg-bg-main space-y-2.5">
+              <div className="text-xs sm:text-sm font-mono text-text-primary font-bold flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-emerald-500" />
                 <span>Core Architectural Principles</span>
               </div>
-              <ul className="space-y-1.5 text-xs font-mono text-text-secondary">
+              <ul className="space-y-2 text-xs sm:text-sm font-mono text-text-secondary leading-relaxed">
                 {article.highlights.map((h, hIdx) => (
-                  <li key={hIdx} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                  <li key={hIdx} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                     <span>{h}</span>
                   </li>
                 ))}
@@ -271,26 +271,26 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({
 
             {/* Code Snippet Demonstration */}
             {article.snippet && (
-              <div className="rounded-xl border border-border-main bg-bg-main overflow-hidden text-xs font-mono">
-                <div className="px-3.5 py-2 border-b border-border-main bg-panel-bg flex items-center justify-between text-[11px] text-text-muted">
-                  <span className="flex items-center gap-1.5">
-                    <Terminal className="w-3.5 h-3.5 text-text-primary" />
+              <div className="rounded-xl border border-border-main bg-bg-main overflow-hidden text-xs sm:text-sm font-mono shadow-xs">
+                <div className="px-4 py-2.5 border-b border-border-main bg-panel-bg flex items-center justify-between text-xs text-text-muted">
+                  <span className="flex items-center gap-2 font-medium text-text-primary">
+                    <Terminal className="w-4 h-4 text-emerald-500" />
                     <span>Reference Architecture ({article.snippetLanguage})</span>
                   </span>
                   <span>Production Pattern</span>
                 </div>
-                <pre className="p-4 overflow-x-auto text-text-secondary leading-relaxed">
+                <pre className="p-4 sm:p-5 overflow-x-auto text-xs sm:text-[13px] font-mono text-text-secondary leading-relaxed">
                   <code>{article.snippet}</code>
                 </pre>
               </div>
             )}
 
             {/* Tag Pills */}
-            <div className="flex flex-wrap gap-1.5 pt-1">
+            <div className="flex flex-wrap gap-2 pt-1">
               {article.tags.map((t) => (
                 <span
                   key={t}
-                  className="px-2.5 py-0.5 rounded-full border border-border-subtle bg-bg-main text-[11px] font-mono text-text-secondary"
+                  className="px-3 py-1 rounded-full border border-border-subtle bg-bg-main text-xs font-mono text-text-secondary"
                 >
                   #{t}
                 </span>

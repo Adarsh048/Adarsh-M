@@ -60,7 +60,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBack, onNavigateToPr
   };
 
   return (
-    <article className="py-8 space-y-12">
+    <article className="pt-24 sm:pt-28 pb-12 space-y-12">
       {/* Top Breadcrumb & Return Action */}
       <div className="flex items-center justify-between border-b border-border-main pb-4 animate-hero-fade-up" style={{ animationDelay: '100ms' }}>
         <button
@@ -77,16 +77,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBack, onNavigateToPr
       </div>
 
       {/* Hero Header */}
-      <header className="space-y-4">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-border-main bg-panel-bg text-[11px] font-mono text-text-secondary animate-hero-badge" style={{ animationDelay: '220ms' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+      <header className="space-y-5">
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border-main bg-panel-bg text-xs font-mono text-text-secondary animate-hero-badge" style={{ animationDelay: '220ms' }}>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Direct Communication & Inquiries</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-text-primary">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight text-text-primary leading-[1.12]">
             <LetterReveal text="Get In Touch" baseDelay={320} staggerMs={24} />
           </h1>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-3xl font-sans">
             <WordReveal 
               text="Whether you have a technical opportunity, a distributed systems challenge, or want to discuss full-stack & AI engineering, my inbox is open."
               baseDelay={650}
@@ -96,17 +96,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBack, onNavigateToPr
         </div>
 
         {/* Status Callout Card */}
-        <div className="p-4 sm:p-5 rounded-2xl border border-border-main bg-panel-bg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 animate-hero-card" style={{ animationDelay: '950ms' }}>
-          <div className="flex items-center gap-3 min-w-0">
+        <div className="p-4 sm:p-5 rounded-2xl border border-border-main bg-panel-bg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 sm:gap-4 shadow-xs animate-hero-card" style={{ animationDelay: '950ms' }}>
+          <div className="flex items-center gap-3.5 min-w-0">
             <div className="relative flex h-3 w-3 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
             </div>
-            <div className="min-w-0">
-              <span className="text-xs font-mono font-bold text-text-primary block">
+            <div className="min-w-0 space-y-0.5">
+              <span className="text-sm sm:text-base font-mono font-bold text-text-primary block">
                 Active & Available for Work
               </span>
-              <span className="text-[10px] min-[360px]:text-[11px] font-mono text-text-secondary block">
+              <span className="text-xs sm:text-sm font-mono text-text-secondary block">
                 Open to Full-Stack Engineer, Backend Engineer & AI Systems roles
               </span>
             </div>
@@ -114,17 +114,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBack, onNavigateToPr
 
           <button
             onClick={copyEmail}
-            className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-2 rounded-xl border border-border-main bg-bg-main hover:border-text-primary text-[11px] sm:text-xs font-mono text-text-primary transition-colors cursor-pointer self-start sm:self-auto shrink-0"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border-main bg-bg-main hover:border-text-primary text-xs sm:text-sm font-mono text-text-primary transition-colors cursor-pointer self-start sm:self-auto shrink-0 shadow-xs"
             title="Click to copy email address"
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                <Check className="w-4 h-4 text-emerald-500" />
                 <span className="text-emerald-500 font-semibold">Copied to Clipboard!</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5 text-text-secondary" />
+                <Copy className="w-4 h-4 text-text-secondary" />
                 <span>{PROFILE.email}</span>
               </>
             )}
@@ -135,72 +135,72 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBack, onNavigateToPr
       {/* Main Grid: Direct Message Form & Contact Channels */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Form Container */}
-        <section className="p-6 rounded-2xl border border-border-main bg-panel-bg space-y-5 animate-hero-card" style={{ animationDelay: '1150ms' }}>
-          <div className="flex items-center gap-2 border-b border-border-main/60 pb-3">
-            <MessageSquare className="w-4 h-4 text-emerald-500" />
-            <h2 className="text-base font-bold font-display text-text-primary">
+        <section className="p-6 sm:p-7 rounded-2xl border border-border-main bg-panel-bg space-y-5 shadow-xs animate-hero-card" style={{ animationDelay: '1150ms' }}>
+          <div className="flex items-center gap-2.5 border-b border-border-main/60 pb-3.5">
+            <MessageSquare className="w-5 h-5 text-emerald-500" />
+            <h2 className="text-lg sm:text-xl font-bold font-display text-text-primary">
               Send a Direct Message
             </h2>
           </div>
 
-          <form onSubmit={handleFormSubmit} className="space-y-4 text-xs font-mono">
-            <div className="space-y-1">
-              <label className="text-text-secondary block">Your Name / Organization</label>
+          <form onSubmit={handleFormSubmit} className="space-y-4">
+            <div className="space-y-1.5">
+              <label className="text-xs sm:text-[13px] font-mono font-medium text-text-secondary block">Your Name / Organization</label>
               <input
                 type="text"
                 required
                 placeholder="e.g. Sarah Jenkins • Acme Corp"
                 value={formState.name}
                 onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-xl border border-border-main bg-bg-main text-text-primary placeholder:text-text-muted focus:outline-none focus:border-text-primary transition-colors"
+                className="w-full px-4 py-2.5 rounded-xl border border-border-main bg-bg-main text-text-primary text-sm font-sans placeholder:text-text-muted focus:outline-none focus:border-text-primary transition-colors"
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-text-secondary block">Your Email</label>
+            <div className="space-y-1.5">
+              <label className="text-xs sm:text-[13px] font-mono font-medium text-text-secondary block">Your Email</label>
               <input
                 type="email"
                 required
                 placeholder="sarah@acme.com"
                 value={formState.email}
                 onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-xl border border-border-main bg-bg-main text-text-primary placeholder:text-text-muted focus:outline-none focus:border-text-primary transition-colors"
+                className="w-full px-4 py-2.5 rounded-xl border border-border-main bg-bg-main text-text-primary text-sm font-sans placeholder:text-text-muted focus:outline-none focus:border-text-primary transition-colors"
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-text-secondary block">Subject</label>
+            <div className="space-y-1.5">
+              <label className="text-xs sm:text-[13px] font-mono font-medium text-text-secondary block">Subject</label>
               <input
                 type="text"
                 required
                 value={formState.subject}
                 onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-xl border border-border-main bg-bg-main text-text-primary focus:outline-none focus:border-text-primary transition-colors"
+                className="w-full px-4 py-2.5 rounded-xl border border-border-main bg-bg-main text-text-primary text-sm font-sans focus:outline-none focus:border-text-primary transition-colors"
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-text-secondary block">Message / Technical Scope</label>
+            <div className="space-y-1.5">
+              <label className="text-xs sm:text-[13px] font-mono font-medium text-text-secondary block">Message / Technical Scope</label>
               <textarea
                 required
                 rows={4}
                 placeholder="Hello Adarsh, we saw your work on DecisionVault and would like to connect regarding an engineering role..."
                 value={formState.message}
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-xl border border-border-main bg-bg-main text-text-primary placeholder:text-text-muted focus:outline-none focus:border-text-primary transition-colors resize-none"
+                className="w-full px-4 py-2.5 rounded-xl border border-border-main bg-bg-main text-text-primary text-sm font-sans placeholder:text-text-muted focus:outline-none focus:border-text-primary transition-colors resize-none leading-relaxed"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-text-primary text-bg-main font-bold hover:opacity-90 transition-opacity cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-text-primary text-bg-main font-bold hover:opacity-90 transition-opacity cursor-pointer text-sm sm:text-base shadow-xs"
             >
-              <Send className="w-3.5 h-3.5" />
+              <Send className="w-4 h-4" />
               <span>Launch Email Client</span>
             </button>
 
             {sentNotice && (
-              <p className="text-[11px] text-emerald-500 text-center pt-1 font-sans">
+              <p className="text-xs text-emerald-500 text-center pt-1 font-sans font-medium">
                 Opening your email client to send your message directly.
               </p>
             )}
@@ -209,80 +209,80 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBack, onNavigateToPr
 
         {/* Communication Channels & Protocols */}
         <section className="space-y-6">
-          <div className="p-6 rounded-2xl border border-border-main bg-panel-bg space-y-4 animate-hero-card" style={{ animationDelay: '1350ms' }}>
-            <h2 className="text-base font-bold font-display text-text-primary border-b border-border-main/60 pb-3">
+          <div className="p-6 sm:p-7 rounded-2xl border border-border-main bg-panel-bg space-y-5 shadow-xs animate-hero-card" style={{ animationDelay: '1350ms' }}>
+            <h2 className="text-lg sm:text-xl font-bold font-display text-text-primary border-b border-border-main/60 pb-3.5">
               Channels & Location
             </h2>
 
-            <div className="space-y-3.5 text-xs font-mono">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+            <div className="space-y-4">
+              <div className="flex items-start gap-3.5">
+                <MapPin className="w-4 h-4 text-emerald-500 shrink-0 mt-1" />
                 <div>
-                  <span className="text-text-primary font-bold block">Location</span>
-                  <span className="text-text-secondary block">{PROFILE.location}</span>
+                  <span className="text-sm sm:text-[15px] text-text-primary font-bold block">Location</span>
+                  <span className="text-xs sm:text-sm font-mono text-text-secondary block">{PROFILE.location}</span>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3">
-                <Clock className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3.5">
+                <Clock className="w-4 h-4 text-emerald-500 shrink-0 mt-1" />
                 <div>
-                  <span className="text-text-primary font-bold block">Timezone</span>
-                  <span className="text-text-secondary block">{PROFILE.timezone} (UTC+5:30)</span>
+                  <span className="text-sm sm:text-[15px] text-text-primary font-bold block">Timezone</span>
+                  <span className="text-xs sm:text-sm font-mono text-text-secondary block">{PROFILE.timezone} (UTC+5:30)</span>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3">
-                <Mail className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3.5">
+                <Mail className="w-4 h-4 text-emerald-500 shrink-0 mt-1" />
                 <div>
-                  <span className="text-text-primary font-bold block">Response SLA</span>
-                  <span className="text-text-secondary block">Replies typically within 12 hours</span>
+                  <span className="text-sm sm:text-[15px] text-text-primary font-bold block">Response SLA</span>
+                  <span className="text-xs sm:text-sm font-mono text-text-secondary block">Replies typically within 12 hours</span>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3">
-                <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0 mt-1" />
                 <div>
-                  <span className="text-text-primary font-bold block">Security Inquiries</span>
-                  <span className="text-text-secondary block">PGP & Responsible disclosures welcomed</span>
+                  <span className="text-sm sm:text-[15px] text-text-primary font-bold block">Security Inquiries</span>
+                  <span className="text-xs sm:text-sm font-mono text-text-secondary block">PGP & Responsible disclosures welcomed</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Social Profiles Grid */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3.5">
             <a
               href={PROFILE.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-xl border border-border-main bg-panel-bg hover:border-text-primary text-text-primary transition-all flex items-center justify-between group animate-hero-card"
+              className="p-4 sm:p-4.5 rounded-xl border border-border-main bg-panel-bg hover:border-text-primary text-text-primary transition-all flex items-center justify-between group shadow-xs animate-hero-card"
               style={{ animationDelay: '1500ms' }}
             >
-              <div className="flex items-center gap-2.5">
-                <GithubIcon className="w-4 h-4" />
+              <div className="flex items-center gap-3">
+                <GithubIcon className="w-5 h-5" />
                 <div>
-                  <span className="text-xs font-mono font-bold block">GitHub</span>
-                  <span className="text-[10px] font-mono text-text-muted block">@Adarsh048</span>
+                  <span className="text-sm font-mono font-bold block">GitHub</span>
+                  <span className="text-xs font-mono text-text-muted block">@Adarsh048</span>
                 </div>
               </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-text-secondary group-hover:text-text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="w-4 h-4 text-text-secondary group-hover:text-text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
 
             <a
               href={PROFILE.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-xl border border-border-main bg-panel-bg hover:border-text-primary text-text-primary transition-all flex items-center justify-between group animate-hero-card"
+              className="p-4 sm:p-4.5 rounded-xl border border-border-main bg-panel-bg hover:border-text-primary text-text-primary transition-all flex items-center justify-between group shadow-xs animate-hero-card"
               style={{ animationDelay: '1650ms' }}
             >
-              <div className="flex items-center gap-2.5">
-                <LinkedinIcon className="w-4 h-4" />
+              <div className="flex items-center gap-3">
+                <LinkedinIcon className="w-5 h-5" />
                 <div>
-                  <span className="text-xs font-mono font-bold block">LinkedIn</span>
-                  <span className="text-[10px] font-mono text-text-muted block">Adarsh M</span>
+                  <span className="text-sm font-mono font-bold block">LinkedIn</span>
+                  <span className="text-xs font-mono text-text-muted block">Adarsh M</span>
                 </div>
               </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-text-secondary group-hover:text-text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="w-4 h-4 text-text-secondary group-hover:text-text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
         </section>

@@ -59,7 +59,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ onOpenFullActivity }) => {
       <div className="flex items-center gap-3">
         <h2 
           onClick={onOpenFullActivity}
-          className={`text-xl sm:text-2xl font-bold font-display tracking-tight text-text-primary whitespace-nowrap ${
+          className={`text-2xl sm:text-3xl font-bold font-display tracking-tight text-text-primary whitespace-nowrap ${
             onOpenFullActivity ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''
           }`}
           title={onOpenFullActivity ? "Click to view full activity & milestones dossier" : undefined}
