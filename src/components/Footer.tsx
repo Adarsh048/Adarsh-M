@@ -13,27 +13,29 @@ export const Footer: React.FC = () => {
   return (
     <footer
       ref={ref}
-      className={`pt-10 pb-24 md:pb-12 border-t border-border-main text-xs text-text-secondary font-mono ${
+      id="portfolio-footer"
+      className={`pt-6 pb-24 md:pb-12 border-t border-border-main text-xs text-text-secondary font-mono relative ${
         isInView ? 'animate-hero-fade-up' : ''
       }`}
       style={{ animationDelay: '100ms' }}
     >
+      {/* Walking Torch Platform Anchor along the Footer Ground Line */}
+      <div
+        id="footer-ground-platform"
+        className="absolute top-0 left-0 w-full h-[1px] pointer-events-none select-none"
+      />
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         
         {/* Left: Identity */}
         <div className="flex items-center gap-2">
           <Terminal className="w-3.5 h-3.5 text-text-primary" />
           <span>
-            © {new Date().getFullYear()} <span className="text-text-primary font-bold">{PROFILE.name}</span>. Inspired by srexrg.me.
+            © {new Date().getFullYear()} <span className="text-text-primary font-bold">{PROFILE.name}</span>. All rights reserved.
           </span>
         </div>
 
-        {/* Right: Technical Architecture & Back to Top */}
+        {/* Right: Back to Top */}
         <div className="flex items-center gap-4">
-          <span className="hidden sm:inline text-text-muted">
-            React • Vite • TypeScript • Tailwind CSS
-          </span>
-
           <button
             onClick={scrollToTop}
             className="inline-flex items-center gap-1 hover:text-text-primary transition-colors p-1 rounded hover:bg-bg-hover focus-visible:outline-none"
@@ -48,3 +50,5 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
+
+export default Footer;

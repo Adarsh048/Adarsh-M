@@ -10,6 +10,7 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   isPrimary?: boolean;
+  image?: string;
 }
 
 export interface SkillCategory {

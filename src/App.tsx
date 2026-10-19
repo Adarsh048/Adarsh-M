@@ -111,12 +111,11 @@ export const App: React.FC = () => {
     <ThemeProvider>
       <TorchWhiteoutOverlay />
       <div className="relative min-h-screen bg-bg-main text-text-primary font-sans antialiased selection:bg-neutral-800 selection:text-white dark:selection:bg-neutral-200 dark:selection:text-black transition-colors duration-200">
-
         {/* Global Navigation: Desktop Floating Pill + Mobile Dock */}
         <Navbar currentPath={currentPath} onNavigate={navigateTo} />
 
-        {/* Editorial Single-Column Container matching srexrg.me (max-w-2xl mx-auto px-4 sm:px-6) */}
-        <main id="portfolio-main" className="max-w-2xl mx-auto px-4 sm:px-6 pb-24 md:pb-12 flex flex-col space-y-10 relative z-10 w-full overflow-x-clip">
+        {/* Centered Editorial Container (Balanced max-w-3xl: 768px) */}
+        <main id="portfolio-main" className="max-w-3xl mx-auto px-4 sm:px-6 pb-24 md:pb-12 flex flex-col space-y-10 relative z-10 w-full overflow-x-clip">
           <div key={currentPath} className="w-full flex flex-col space-y-10">
             {renderContent()}
           </div>

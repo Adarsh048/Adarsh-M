@@ -1,24 +1,36 @@
 import React, { useState } from 'react';
 import { 
   ArrowUpRight, 
-  Activity, 
-  RefreshCw, 
   ArrowRight, 
-  Mail
+  Copy,
+  Check,
+  Mail,
+  Terminal,
+  TrendingUp
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, XIcon } from './Icons';
 import { PROFILE } from '../data/portfolioData';
 import { useInView } from '../hooks/useInView';
 import { LetterReveal } from './LetterReveal';
 
-// High-density 5-row x 16-col activity cadence matrix (80 data points)
-const COMMIT_CELLS = [
-  0.2, 0.4, 0.1, 0.6, 0.8, 0.3, 0.5, 0.2, 0.9, 0.6, 1.0, 0.4, 0.7, 0.3, 0.8, 0.5,
-  0.5, 0.9, 0.3, 0.2, 0.8, 1.0, 0.4, 0.3, 0.2, 0.5, 0.6, 0.3, 0.8, 0.4, 0.9, 0.6,
-  0.4, 0.2, 0.6, 1.0, 0.7, 0.4, 0.3, 0.5, 0.9, 0.3, 0.8, 0.2, 0.5, 0.7, 0.3, 0.8,
-  0.3, 0.5, 0.2, 0.8, 0.6, 0.3, 0.4, 0.9, 1.0, 0.3, 0.5, 0.2, 0.7, 0.4, 0.9, 0.5,
-  0.4, 0.3, 0.6, 0.2, 0.5, 1.0, 0.3, 0.6, 0.2, 0.9, 0.4, 0.8, 0.5, 0.7, 0.3, 0.9,
-];
+// Faint Envelope Watermark for Mail Card
+const MailWatermark: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <rect width="20" height="15" x="2" y="4.5" rx="3" />
+    <path d="m22 7.5-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7.5" />
+    <path d="m2 17 6-5" />
+    <path d="m22 17-6-5" />
+  </svg>
+);
 
 interface BentoGridProps {
   onOpenFullActivity?: () => void;
@@ -26,17 +38,22 @@ interface BentoGridProps {
 
 export const BentoGrid: React.FC<BentoGridProps> = ({ onOpenFullActivity }) => {
   const { ref, isInView } = useInView<HTMLElement>({ threshold: 0.1 });
-  const [syncState, setSyncState] = useState<'synced' | 'syncing'>('synced');
+  const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
 
-  const triggerSyncSim = () => {
-    setSyncState('syncing');
-    setTimeout(() => {
-      setSyncState('synced');
-    }, 1100);
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(PROFILE.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
+    }
   };
 
+
+
   return (
-    <section ref={ref} id="career" className="py-10 space-y-6">
+    <section ref={ref} id="career" className="py-8 space-y-5">
       {/* Section Header */}
       <div className="flex items-center gap-3">
         <h2 
@@ -48,261 +65,347 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ onOpenFullActivity }) => {
         >
           <LetterReveal text="Activity & Network" isActive={isInView} baseDelay={60} staggerMs={24} />
         </h2>
+        {/* Walking Torch Platform Anchor */}
         <div
           id="activity-ledge-platform"
           className={`h-[1px] flex-1 bg-border-main relative ${isInView ? 'animate-divider-expand' : ''}`}
           style={{ animationDelay: '120ms' }}
         />
+        <div className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-border-main bg-panel-bg text-[10px] font-mono text-text-secondary select-none">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Active Playground</span>
+        </div>
       </div>
 
-      <div className="space-y-3.5">
-        {/* ROW 1: GitHub Repositories Card */}
-        <div
-          className={`w-full ${isInView ? 'animate-hero-fade-up' : ''}`}
-          style={{ animationDelay: '180ms' }}
-        >
+      {/* Bento Grid layout faithfully inspired by the playful developer aesthetic */}
+      <div className="space-y-3 sm:space-y-3.5">
+        
+        {/* =========================================================================
+            ROW 1: Top Asymmetrical Split (GitHub Math Cat + Contribution Stats)
+            ========================================================================= */}
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-3.5">
+          
+          {/* Card 1: GitHub Chalkboard Math Cat Banner (7 Cols) */}
           <a
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative group flex flex-col justify-between overflow-hidden rounded-2xl border border-border-main bg-panel-bg p-5 transition-all duration-300 hover:border-text-primary hover:shadow-xs min-h-[140px]"
+            className={`sm:col-span-7 relative group overflow-hidden rounded-[26px] border border-border-main bg-neutral-950 p-5 sm:p-6 min-h-[175px] sm:min-h-[185px] flex flex-col justify-end transition-all duration-300 hover:border-text-primary/70 hover:shadow-md ${
+              isInView ? 'animate-hero-fade-up' : ''
+            }`}
+            style={{ animationDelay: '160ms' }}
           >
-            {/* Top Row: Icon + Handle + Arrow */}
-            <div className="flex items-center justify-between z-10">
-              <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl border border-border-subtle bg-bg-main text-text-primary">
-                  <GithubIcon className="w-4 h-4" />
-                </div>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-md border border-border-main bg-bg-main text-text-secondary font-medium">
-                  @Adarsh048
-                </span>
-              </div>
-              <span className="p-1.5 rounded-full border border-border-main bg-bg-main text-text-secondary group-hover:text-text-primary transition-colors">
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </span>
+            {/* Background: Adarsh's GitHub Profile Avatar with Atmospheric Vignette Overlay */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 opacity-80"
+              style={{ backgroundImage: `url('/github-avatar.png')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/30" />
+
+            {/* Top Right Mini Corner Link Indicator */}
+            <div className="absolute top-4 right-4 p-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-white/80 group-hover:text-white group-hover:bg-black/60 transition-all">
+              <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </div>
 
-            {/* Middle: Title & Scope */}
-            <div className="space-y-1 z-10 pt-3">
-              <span className="font-bold text-base tracking-tight text-text-primary font-display block">
-                GitHub Repositories
-              </span>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                Open-source engineering • Distributed systems, offline-first ADR platforms & grounded RAG workflows.
+            {/* Content Layer: GitHub Icon + Header + I build. Subtitle */}
+            <div className="relative z-10 space-y-1">
+              <div className="text-white mb-2 inline-block">
+                <GithubIcon className="w-7 h-7 text-white drop-shadow-sm" />
+              </div>
+              
+              <div className="flex items-baseline gap-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-display tracking-tight drop-shadow-sm">
+                  GitHub
+                </h3>
+              </div>
+
+              <p className="text-xs sm:text-sm font-mono text-neutral-200/90 drop-shadow-sm">
+                I build.
               </p>
             </div>
-
-            {/* Bottom Row: Key Repos Metrics */}
-            <div className="flex items-center gap-2 pt-2.5 border-t border-border-subtle/80 z-10 text-[10px] font-mono text-text-muted">
-              <span>15+ Repos</span>
-              <span>•</span>
-              <span>500+ Commits</span>
-              <span>•</span>
-              <span>TypeScript / Python</span>
-            </div>
-
-            {/* Subtle Background Watermark */}
-            <div className="absolute -right-2 -bottom-4 opacity-5 dark:opacity-10 font-mono text-6xl font-bold select-none pointer-events-none text-text-primary">
-              &lt;/&gt;
-            </div>
           </a>
-        </div>
 
-        {/* ROW 2: Contribution Pulse & Shipping Velocity (Full-Width Symmetrical Card) */}
-        <div
-          className={`rounded-2xl border border-border-main bg-panel-bg p-4 sm:p-6 space-y-3.5 sm:space-y-4 ${
-            isInView ? 'animate-hero-fade-up' : ''
-          }`}
-          style={{ animationDelay: '280ms' }}
-        >
-          {/* Header Row: Title on Left, Active Streak on Right */}
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border-subtle/80 pb-3">
-            <div className="flex items-center gap-2">
-              <Activity className="w-4 h-4 text-emerald-500 shrink-0" />
-              <span className="text-xs sm:text-sm font-bold font-display text-text-primary">
-                Contribution Pulse & Shipping Velocity
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-[10px] font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Active Streak
-              </span>
-            </div>
-          </div>
-
-          {/* Activity Matrix Subhead */}
-          <div className="flex flex-wrap items-center justify-between gap-1 text-[10px] font-mono text-text-muted pt-0.5">
-            <span>Recent 16-Week Activity Matrix</span>
-            <span>500+ Lifetime GitHub Commits</span>
-          </div>
-
-          {/* Activity Matrix Grid (Strict 16-Column Layout across all screens) */}
-          <div 
-            className="w-full py-1"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(16, minmax(0, 1fr))',
-              gap: '3px',
-            }}
+          {/* Card 2: Monochrome Activity & Commit Velocity Graph (5 Cols) */}
+          <div
+            onClick={onOpenFullActivity}
+            className={`sm:col-span-5 rounded-[26px] border border-border-main bg-gradient-to-br from-[#14151b] via-[#0f1014] to-[#0a0b0d] p-4.5 sm:p-5 flex flex-col justify-between min-h-[175px] sm:min-h-[185px] transition-all duration-300 hover:border-neutral-400 hover:shadow-[0_8px_30px_rgba(255,255,255,0.06)] cursor-pointer select-none group relative overflow-hidden ${
+              isInView ? 'animate-hero-fade-up' : ''
+            }`}
+            style={{ animationDelay: '220ms' }}
+            title="Click to view full career milestones & activity dossier"
           >
-            {COMMIT_CELLS.map((intensity, idx) => {
-              const cellBg =
-                intensity < 0.3
-                  ? 'bg-border-main/50'
-                  : intensity < 0.6
-                  ? 'bg-emerald-500/35'
-                  : intensity < 0.8
-                  ? 'bg-emerald-500/65'
-                  : 'bg-emerald-500';
+            {/* Top Right Ambient Subtle Glow */}
+            <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-white/[0.04] blur-2xl pointer-events-none group-hover:bg-white/[0.08] transition-all duration-500" />
 
-              return (
-                <div
-                  key={idx}
-                  className={`h-2 min-[360px]:h-2.5 sm:h-3 rounded-[2px] sm:rounded-[2.5px] transition-all hover:scale-125 cursor-pointer ${cellBg}`}
-                  title={`Activity index ${idx + 1}: ${(intensity * 10).toFixed(0)} contributions`}
+            {/* Top Bar: Title & Stat Badge */}
+            <div className="flex items-center justify-between pb-1 relative z-10">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center text-white shrink-0 shadow-inner">
+                  <TrendingUp className="w-4 h-4 text-white" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-xs font-mono font-bold text-white tracking-wide truncate">
+                    Commit Velocity
+                  </div>
+                  <span className="text-[10px] font-mono text-neutral-400">
+                    500+ commits
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/15 text-[10px] font-mono text-neutral-300 shrink-0">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shadow-[0_0_4px_rgba(255,255,255,0.8)]" />
+                <span className="font-semibold text-white">+38% velocity</span>
+              </div>
+            </div>
+
+            {/* Graph Visual Area */}
+            <div className="relative w-full py-1 my-auto z-10">
+              {/* Peak Tooltip Pill */}
+              <div className="absolute top-0 right-16 -translate-y-1.5 z-20 pointer-events-none opacity-90 group-hover:opacity-100 transition-opacity">
+                <div className="px-2 py-0.5 rounded-md bg-black/90 border border-white/25 text-[9px] font-mono text-white shadow-[0_4px_12px_rgba(0,0,0,0.5)] flex items-center gap-1 backdrop-blur-md">
+                  <span className="w-1 h-1 rounded-full bg-white shadow-[0_0_4px_rgba(255,255,255,0.8)]" />
+                  <span>Peak: 48 / wk</span>
+                </div>
+              </div>
+
+              <svg
+                viewBox="0 0 320 80"
+                className="w-full h-20 overflow-visible"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient id="activityAreaMono" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.22" />
+                    <stop offset="60%" stopColor="#ffffff" stopOpacity="0.04" />
+                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
+                  </linearGradient>
+                  <linearGradient id="activityStrokeMono" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#737373" />
+                    <stop offset="50%" stopColor="#ffffff" />
+                    <stop offset="100%" stopColor="#cccccc" />
+                  </linearGradient>
+                </defs>
+
+                {/* Background Activity Volume Pillars */}
+                <rect x="12" y="45" width="8" height="35" rx="2" fill="#ffffff" opacity="0.04" />
+                <rect x="44" y="38" width="8" height="42" rx="2" fill="#ffffff" opacity="0.04" />
+                <rect x="76" y="32" width="8" height="48" rx="2" fill="#ffffff" opacity="0.05" />
+                <rect x="108" y="28" width="8" height="52" rx="2" fill="#ffffff" opacity="0.05" />
+                <rect x="140" y="35" width="8" height="45" rx="2" fill="#ffffff" opacity="0.04" />
+                <rect x="172" y="20" width="8" height="60" rx="2" fill="#ffffff" opacity="0.06" />
+                <rect x="204" y="26" width="8" height="54" rx="2" fill="#ffffff" opacity="0.05" />
+                <rect x="236" y="12" width="8" height="68" rx="2" fill="#ffffff" opacity="0.09" />
+                <rect x="268" y="22" width="8" height="58" rx="2" fill="#ffffff" opacity="0.06" />
+                <rect x="300" y="16" width="8" height="64" rx="2" fill="#ffffff" opacity="0.07" />
+
+                {/* Subtle Horizontal Grid Guidelines */}
+                <line x1="0" y1="20" x2="320" y2="20" stroke="currentColor" className="text-neutral-800/80" strokeDasharray="3 3" strokeWidth="1" />
+                <line x1="0" y1="50" x2="320" y2="50" stroke="currentColor" className="text-neutral-800/80" strokeDasharray="3 3" strokeWidth="1" />
+
+                {/* Area Fill */}
+                <path
+                  d="M 0,58 C 15,58 20,52 30,52 C 45,52 50,45 65,45 C 80,45 85,38 100,38 C 115,38 120,44 135,42 C 150,40 155,25 170,24 C 185,23 192,34 205,34 C 220,34 228,12 240,12 C 255,12 262,26 275,26 C 290,26 305,18 320,16 L 320,80 L 0,80 Z"
+                  fill="url(#activityAreaMono)"
                 />
-              );
-            })}
+
+                {/* Main Stroke Line */}
+                <path
+                  d="M 0,58 C 15,58 20,52 30,52 C 45,52 50,45 65,45 C 80,45 85,38 100,38 C 115,38 120,44 135,42 C 150,40 155,25 170,24 C 185,23 192,34 205,34 C 220,34 228,12 240,12 C 255,12 262,26 275,26 C 290,26 305,18 320,16"
+                  fill="none"
+                  stroke="url(#activityStrokeMono)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+
+                {/* Peak Highlight Point */}
+                <circle cx="240" cy="12" r="4.5" fill="#ffffff" />
+                <circle cx="240" cy="12" r="8" fill="#ffffff" opacity="0.3" className="animate-ping origin-center" />
+                <circle cx="240" cy="12" r="2" fill="#000000" />
+
+                {/* Current Active Point */}
+                <circle cx="320" cy="16" r="3.5" fill="#ffffff" />
+              </svg>
+            </div>
+
+            {/* Bottom: Month Timeline Axis & Quick Stats */}
+            <div className="pt-2 border-t border-neutral-800/80 flex items-center justify-between text-[10px] font-mono text-neutral-400 relative z-10">
+              <div className="flex items-center gap-3">
+                <span className="hover:text-white transition-colors">Q1</span>
+                <span className="hover:text-white transition-colors">Q2</span>
+                <span className="hover:text-white transition-colors">Q3</span>
+                <span className="text-white font-semibold">Q4 (Now)</span>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <span className="flex items-center gap-1 text-neutral-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_3px_rgba(255,255,255,0.6)]" />
+                  <span>28d streak</span>
+                </span>
+                <span className="text-neutral-600">|</span>
+                <span className="flex items-center gap-1 text-neutral-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />
+                  <span>15 repos</span>
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* 4 Equal-Width Symmetrical Telemetry Metric Boxes */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-3 border-t border-border-subtle">
-            {/* Box 1: Commits */}
-            <div className="p-2.5 sm:p-3 rounded-xl border border-border-subtle bg-bg-main/60 flex flex-col justify-between text-center min-h-[72px] sm:min-h-[76px]">
-              <span className="text-[9px] sm:text-[10px] font-mono text-text-muted uppercase tracking-wider block">
-                COMMITS
-              </span>
-              <span className="text-sm min-[360px]:text-base sm:text-lg font-bold font-mono text-text-primary block my-0.5">
-                {PROFILE.stats.commits}
-              </span>
-              <span className="text-[9px] sm:text-[10px] font-mono text-text-secondary block">
-                Lifetime Shipped
-              </span>
-            </div>
+        </div>
 
-            {/* Box 2: Repositories */}
-            <div className="p-2.5 sm:p-3 rounded-xl border border-border-subtle bg-bg-main/60 flex flex-col justify-between text-center min-h-[72px] sm:min-h-[76px]">
-              <span className="text-[9px] sm:text-[10px] font-mono text-text-muted uppercase tracking-wider block">
-                REPOSITORIES
-              </span>
-              <span className="text-sm min-[360px]:text-base sm:text-lg font-bold font-mono text-text-primary block my-0.5">
-                {PROFILE.stats.repos}
-              </span>
-              <span className="text-[9px] sm:text-[10px] font-mono text-text-secondary block">
-                Public Open Source
-              </span>
-            </div>
+        {/* =========================================================================
+            ROW 2: Bottom Bento Triad (Photo with Kanji + Social / LeetCode + Offline)
+            ========================================================================= */}
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-3.5">
 
-            {/* Box 3: CTF Rank */}
-            <div className="p-2.5 sm:p-3 rounded-xl border border-border-subtle bg-bg-main/60 flex flex-col justify-between text-center min-h-[72px] sm:min-h-[76px]">
-              <span className="text-[9px] sm:text-[10px] font-mono text-text-muted uppercase tracking-wider block">
-                CTF SECURITY
-              </span>
-              <span className="text-sm min-[360px]:text-base sm:text-lg font-bold font-mono text-text-primary block my-0.5">
-                {PROFILE.stats.ctfRank}
-              </span>
-              <span className="text-[9px] sm:text-[10px] font-mono text-text-secondary block">
-                National Finals
-              </span>
-            </div>
-
-            {/* Box 4: Outbox Sync Simulator */}
+          {/* Card 3: Cinematic Monochrome Founder Portrait with Vertical Japanese Kanji (Col Span 4) */}
+          <div
+            onClick={onOpenFullActivity}
+            className={`sm:col-span-4 relative group overflow-hidden rounded-[26px] border border-border-main bg-neutral-950 min-h-[180px] sm:min-h-[210px] cursor-pointer transition-all duration-300 hover:border-text-primary/70 hover:shadow-md ${
+              isInView ? 'animate-hero-fade-up' : ''
+            }`}
+            style={{ animationDelay: '280ms' }}
+            title="Click to view full activity dossier"
+          >
+            {/* Cinematic 35mm Photo */}
             <div 
-              onClick={triggerSyncSim}
-              className="p-2.5 sm:p-3 rounded-xl border border-border-subtle bg-bg-main/60 flex flex-col justify-between text-center min-h-[72px] sm:min-h-[76px] cursor-pointer hover:border-emerald-500/50 transition-colors group select-none"
-              title="Click to test simulated local-first state sync"
-            >
-              <div className="flex items-center justify-center gap-1 text-[9px] sm:text-[10px] font-mono text-text-muted uppercase tracking-wider">
-                <span>ENGINE SYNC</span>
-                <RefreshCw className={`w-2.5 h-2.5 group-hover:text-emerald-500 transition-colors ${syncState === 'syncing' ? 'animate-spin text-emerald-500' : ''}`} />
-              </div>
-              <span className="text-sm min-[360px]:text-base sm:text-lg font-bold font-mono text-emerald-600 dark:text-emerald-400 block my-0.5">
-                {syncState === 'syncing' ? 'SYNCING...' : '100%'}
-              </span>
-              <span className="text-[9px] sm:text-[10px] font-mono text-text-secondary block">
-                {syncState === 'syncing' ? 'Reconciling...' : 'Zero Data Loss'}
-              </span>
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+              style={{ backgroundImage: `url('/founder-portrait.jpg')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/20" />
+
+            {/* Vertical Japanese Text: こんにちは (Konnichiwa) along left edge */}
+            <div className="absolute left-3.5 bottom-3.5 text-white font-bold text-[13px] tracking-widest [writing-mode:vertical-rl] select-none pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-sans">
+              こんにちは
+            </div>
+
+            {/* Circular Arrow Badge at Top Right */}
+            <div className="absolute top-3.5 right-3.5 p-2 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-white group-hover:scale-110 group-hover:bg-black/70 transition-all">
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </div>
           </div>
-        </div>
 
-        {/* ROW 3: Professional Channels (3 Equal Symmetrical Columns) */}
-        <div
-          className={`grid grid-cols-1 sm:grid-cols-3 gap-3.5 ${isInView ? 'animate-hero-fade-up' : ''}`}
-          style={{ animationDelay: '380ms' }}
-        >
-          {/* LinkedIn Profile */}
-          <a
-            href={PROFILE.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-4 sm:p-5 rounded-2xl border border-border-main bg-panel-bg hover:border-text-primary hover:shadow-xs transition-all flex flex-col justify-between group min-h-[115px]"
+          {/* Card 4: LinkedIn & X Social Cards (Col Span 4) */}
+          <div
+            className={`sm:col-span-4 grid grid-cols-2 gap-2.5 min-h-[180px] sm:min-h-[210px] ${
+              isInView ? 'animate-hero-fade-up' : ''
+            }`}
+            style={{ animationDelay: '340ms' }}
           >
-            <div className="flex items-center justify-between mb-3">
-              <div className="p-2 rounded-xl border border-border-subtle bg-bg-main text-text-primary">
-                <LinkedinIcon className="w-4 h-4" />
+            {/* LinkedIn Card */}
+            <a
+              href={PROFILE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-[22px] bg-[#3e76ba] hover:bg-[#3468a6] text-white p-4 flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-[1.03] shadow-sm select-none group"
+              title="LinkedIn: Adarsh M • I connect."
+            >
+              <div className="flex items-center justify-center transition-transform duration-200 group-hover:scale-110 mb-1.5">
+                <LinkedinIcon className="w-8 h-8 text-white" strokeWidth={2.2} />
               </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-text-muted group-hover:text-text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </div>
-            <div>
-              <span className="text-xs font-bold font-mono text-text-primary block">
+              <div className="text-sm sm:text-base font-bold text-white font-display tracking-tight">
                 LinkedIn
-              </span>
-              <span className="text-[11px] font-mono text-text-secondary block">
-                Professional Network • Adarsh M
-              </span>
-            </div>
-          </a>
-
-          {/* X / Twitter */}
-          <a
-            href={PROFILE.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-4 sm:p-5 rounded-2xl border border-border-main bg-panel-bg hover:border-text-primary hover:shadow-xs transition-all flex flex-col justify-between group min-h-[115px]"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <div className="p-2 rounded-xl border border-border-subtle bg-bg-main text-text-primary">
-                <XIcon className="w-4 h-4" />
               </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-text-muted group-hover:text-text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </div>
-            <div>
-              <span className="text-xs font-bold font-mono text-text-primary block">
-                X (Twitter)
+              <span className="text-xs sm:text-sm font-mono text-white/90 tracking-tight">
+                I connect.
               </span>
-              <span className="text-[11px] font-mono text-text-secondary block">
-                Engineering Dispatch • @adar_sxh
-              </span>
-            </div>
-          </a>
+            </a>
 
-          {/* Direct Inquiries (Email) */}
-          <a
-            href={`mailto:${PROFILE.email}`}
-            className="p-4 sm:p-5 rounded-2xl border border-border-main bg-panel-bg hover:border-text-primary hover:shadow-xs transition-all flex flex-col justify-between group min-h-[115px]"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <div className="p-2 rounded-xl border border-border-subtle bg-bg-main text-text-primary">
-                <Mail className="w-4 h-4" />
+            {/* X / Twitter Card */}
+            <a
+              href={PROFILE.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-[22px] bg-[#212224] border border-[#2e3034] hover:border-neutral-500 text-white p-4 flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-[1.03] shadow-sm select-none group"
+              title="X: @adar_sxh • I discuss."
+            >
+              <div className="flex items-center justify-center transition-transform duration-200 group-hover:scale-110 mb-1.5">
+                <XIcon className="w-7 h-7 text-white" />
               </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-text-muted group-hover:text-text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </div>
-            <div>
-              <span className="text-xs font-bold font-mono text-text-primary block">
-                Direct Inquiries
+              <div className="text-sm sm:text-base font-bold text-white font-display tracking-tight">
+                X
+              </div>
+              <span className="text-xs sm:text-sm font-mono text-neutral-400 tracking-tight">
+                I discuss.
               </span>
-              <span className="text-[11px] font-mono text-text-secondary block truncate" title={PROFILE.email}>
-                {PROFILE.email}
-              </span>
+            </a>
+          </div>
+
+          {/* Card 5: Mail Card (Col Span 4) */}
+          <div
+            onClick={() => {
+              window.location.href = `mailto:${PROFILE.email}?subject=${encodeURIComponent("Software Engineering Opportunity — Adarsh M")}`;
+            }}
+            className={`sm:col-span-4 rounded-[26px] border border-border-main hover:border-neutral-400 bg-gradient-to-br from-[#16171d] via-[#101114] to-[#0a0a0c] p-5 flex flex-col items-center justify-between text-center relative overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgba(255,255,255,0.08)] cursor-pointer select-none group min-h-[185px] sm:min-h-[210px] ${
+              isInView ? 'animate-hero-fade-up' : ''
+            }`}
+            style={{ animationDelay: '400ms' }}
+            title={`Click to email ${PROFILE.email}`}
+          >
+            {/* Top Right Ambient Subtle Glow */}
+            <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-white/[0.04] blur-2xl pointer-events-none group-hover:bg-white/[0.08] transition-all duration-500" />
+
+            {/* Faint Envelope Watermark */}
+            <MailWatermark className="absolute -bottom-6 -right-6 w-36 h-36 text-white/[0.06] dark:text-white/[0.06] pointer-events-none select-none transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3" />
+
+            {/* Top: Status Pill */}
+            <div className="relative z-10 w-full flex items-center justify-center">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/15 text-[10px] font-mono text-neutral-300 shadow-sm backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shadow-[0_0_4px_rgba(255,255,255,0.8)]" />
+                <span className="text-white font-medium">Available for roles</span>
+              </div>
             </div>
-          </a>
+
+            {/* Center: Tactile Mail Emblem & Title */}
+            <div className="relative z-10 space-y-2 flex flex-col items-center my-auto py-1">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-b from-white/[0.12] to-white/[0.02] border border-white/20 shadow-[0_4px_16px_rgba(0,0,0,0.5)] flex items-center justify-center text-white group-hover:scale-110 group-hover:border-white/35 transition-all duration-300">
+                <Mail className="w-5 h-5 text-white drop-shadow-sm" />
+              </div>
+
+              <div className="space-y-0.5">
+                <div className="text-base sm:text-lg font-bold font-display text-white tracking-tight flex items-center justify-center gap-1.5">
+                  <span>Mail</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </div>
+                <div className="text-[11px] sm:text-xs font-mono text-neutral-400 group-hover:text-neutral-200 transition-colors">
+                  {PROFILE.email}
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom: Solid High-Contrast Action Button */}
+            <div className="relative z-10 w-full pt-1">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCopyEmail(e);
+                }}
+                type="button"
+                className="w-full inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-100 text-neutral-950 text-xs font-mono font-bold transition-all duration-200 shadow-[0_2px_12px_rgba(255,255,255,0.12)] active:scale-95 cursor-pointer"
+                title="Copy email to clipboard"
+              >
+                {copiedEmail ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-neutral-950 stroke-[2.5]" />
+                    <span>copied to clipboard!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5 text-neutral-950" />
+                    <span>copy email</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
         </div>
+
       </div>
 
+      {/* Action to View Dedicated Full Milestone Page */}
       {onOpenFullActivity && (
-        <div className="flex justify-end pt-2">
+        <div className="flex justify-end pt-1">
           <button
             onClick={onOpenFullActivity}
             className="group inline-flex items-center gap-2 text-xs font-mono text-text-secondary hover:text-text-primary transition-colors cursor-pointer py-1"
@@ -318,3 +421,5 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ onOpenFullActivity }) => {
     </section>
   );
 };
+
+export default BentoGrid;

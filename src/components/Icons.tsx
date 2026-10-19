@@ -17,13 +17,16 @@ export const GithubIcon: React.FC<{ className?: string }> = ({ className = "w-4 
   </svg>
 );
 
-export const LinkedinIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+export const LinkedinIcon: React.FC<{ className?: string; strokeWidth?: number | string }> = ({ 
+  className = "w-4 h-4",
+  strokeWidth = 2
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="1.75"
+    strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
     className={className}

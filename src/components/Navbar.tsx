@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { User, Compass, BookOpen, Mail, FileText, MoonStar, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { PROFILE } from '../data/portfolioData';
@@ -10,56 +10,8 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate }) => {
   const { theme, toggleTheme } = useTheme();
-  const [activeSection, setActiveSection] = useState('hero');
-
-  useEffect(() => {
-    if (currentPath !== '/') {
-      return;
-    }
-
-    const handleScroll = () => {
-      const sections = ['hero', 'about', 'projects', 'contact'];
-      const scrollPosition = window.scrollY + 200;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentPath]);
-
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const handleNav = (sectionId: string) => {
-    if (sectionId === 'blogs') {
-      if (onNavigate) {
-        onNavigate('/blogs', 'blogs');
-      } else {
-        window.location.href = '/blogs';
-      }
-      return;
-    }
-
-    if (currentPath === '/') {
-      scrollTo(sectionId);
-      return;
-    }
-
     const routeMap: Record<string, string> = {
       hero: '/',
       about: '/about',
@@ -70,19 +22,25 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
 
     const targetRoute = routeMap[sectionId] || '/';
 
+    // If already on the targeted route, smoothly scroll to top
+    if (currentPath === targetRoute) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (onNavigate) {
       onNavigate(targetRoute, sectionId);
     } else {
-      scrollTo(sectionId);
+      window.location.href = targetRoute;
     }
   };
 
   const isCurrentActive = (sectionId: string) => {
-    if (currentPath === '/about') return sectionId === 'about';
-    if (currentPath === '/projects') return sectionId === 'projects';
-    if (currentPath === '/blogs') return sectionId === 'blogs';
-    if (currentPath === '/contact') return sectionId === 'contact';
-    if (currentPath === '/') return activeSection === sectionId;
+    if (sectionId === 'hero') return currentPath === '/';
+    if (sectionId === 'about') return currentPath === '/about';
+    if (sectionId === 'projects') return currentPath === '/projects';
+    if (sectionId === 'blogs') return currentPath === '/blogs';
+    if (sectionId === 'contact') return currentPath === '/contact';
     return false;
   };
 

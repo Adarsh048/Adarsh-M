@@ -192,7 +192,7 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({
           </h1>
         </div>
 
-        <p className="text-sm sm:text-base text-text-secondary font-mono leading-relaxed max-w-xl">
+        <p className="text-sm sm:text-base text-text-secondary font-mono leading-relaxed max-w-3xl">
           Deep-dives into offline-first state synchronization, low-latency WebSocket token streaming, grounded RAG architectures, and full-stack software resilience.
         </p>
       </header>

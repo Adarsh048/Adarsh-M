@@ -41,7 +41,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
 
   return (
     <section ref={ref} id="contact" className="py-14 space-y-8">
-      {/* Centered Editorial Header matching srexrg.me */}
+      {/* Centered Editorial Header */}
       <div className="flex flex-col items-center text-center space-y-3">
         <div
           id="contact-badge-platform"
@@ -58,7 +58,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
         </h2>
 
         <p
-          className={`text-sm sm:text-base text-text-secondary max-w-[520px] leading-relaxed ${
+          className={`text-sm sm:text-base text-text-secondary max-w-2xl leading-relaxed ${
             isInView ? 'animate-hero-fade-up' : ''
           }`}
           style={{ animationDelay: '180ms' }}
@@ -69,7 +69,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
 
       {/* Main Contact Container */}
       <div
-        className={`max-w-[640px] mx-auto space-y-6 ${isInView ? 'animate-hero-fade-up' : ''}`}
+        className={`w-full max-w-2xl sm:max-w-3xl mx-auto space-y-6 ${isInView ? 'animate-hero-fade-up' : ''}`}
         style={{ animationDelay: '260ms' }}
       >
         

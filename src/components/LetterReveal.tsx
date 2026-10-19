@@ -81,13 +81,15 @@ export const WordReveal: React.FC<WordRevealProps> = ({
       {words.map((word, index) => {
         const delay = baseDelay + index * staggerMs;
         return (
-          <span
-            key={index}
-            className={`animate-word-reveal inline-block mr-[0.26em] ${wordClassName}`}
-            style={{ animationDelay: `${delay}ms` }}
-          >
-            {word}
-          </span>
+          <React.Fragment key={index}>
+            <span
+              className={`animate-word-reveal inline-block ${wordClassName}`}
+              style={{ animationDelay: `${delay}ms` }}
+            >
+              {word}
+            </span>
+            {index < words.length - 1 && ' '}
+          </React.Fragment>
         );
       })}
     </span>

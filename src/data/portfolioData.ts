@@ -21,6 +21,8 @@ export const PROFILE = {
   stats: {
     commits: "500+",
     repos: "15+",
+    prs: "42+",
+    streak: "28d",
     ctfRank: "Top 5 / 50",
     cgpa: "8.76"
   }
@@ -43,11 +45,12 @@ export const PROJECTS: Project[] = [
     tags: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Socket.IO", "IndexedDB", "Dexie.js", "Tailwind CSS"],
     liveUrl: "https://decision-vault-for.vercel.app/",
     githubUrl: "https://github.com/Adarsh048/DecisionVault",
-    isPrimary: true
+    isPrimary: true,
+    image: "/projects/decision-vault.jpg"
   },
   {
     id: "query-mind",
-    title: "QueryMind / Find It",
+    title: "QueryMind",
     subtitle: "AI Search & Research Engine",
     period: "2025",
     category: "AI Engineering • Information Retrieval",
@@ -59,7 +62,8 @@ export const PROJECTS: Project[] = [
       "Cross-platform responsive client engineered with Flutter & Dart alongside a Python FastAPI backend"
     ],
     tags: ["Flutter", "Dart", "FastAPI", "Python", "Gemini AI", "Tavily Search", "RAG", "WebSockets"],
-    githubUrl: "https://github.com/Adarsh048/Find_it_app"
+    githubUrl: "https://github.com/Adarsh048/Find_it_app",
+    image: "/projects/query-mind.jpg"
   },
   {
     id: "finsight",
@@ -75,7 +79,8 @@ export const PROJECTS: Project[] = [
     ],
     tags: ["React", "JavaScript", "Tailwind CSS", "Recharts", "REST APIs"],
     liveUrl: "https://finance-dashboard-teal-nine-23.vercel.app",
-    githubUrl: "https://github.com/Adarsh048/Finance_dashboard"
+    githubUrl: "https://github.com/Adarsh048/Finance_dashboard",
+    image: "/projects/finsight.jpg"
   }
 ];
 
@@ -117,19 +122,19 @@ export const MARQUEE_ROW_2 = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: "GitHub",
-    sublabel: "Ma playground 🔮",
+    sublabel: "I build.",
     url: PROFILE.github,
     icon: "github"
   },
   {
     label: "LinkedIn",
-    sublabel: "(serious stuff 💼)",
+    sublabel: "I connect.",
     url: PROFILE.linkedin,
     icon: "linkedin"
   },
   {
-    label: "X / Twitter",
-    sublabel: "(builds & ideas 🚀)",
+    label: "X",
+    sublabel: "I discuss.",
     url: PROFILE.twitter,
     icon: "twitter"
   },

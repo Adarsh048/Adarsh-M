@@ -157,7 +157,7 @@ export const StackPage: React.FC<StackPageProps> = ({ onBack, onNavigateToProjec
           <h1 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-text-primary">
             <LetterReveal text="Technology Stack & Architecture" baseDelay={320} staggerMs={22} />
           </h1>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl">
             <WordReveal 
               text="A comprehensive breakdown of the languages, frameworks, distributed databases, AI retrieval pipelines, and security mechanisms I employ in production."
               baseDelay={650}

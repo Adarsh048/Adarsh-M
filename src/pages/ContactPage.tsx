@@ -86,7 +86,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBack, onNavigateToPr
           <h1 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-text-primary">
             <LetterReveal text="Get In Touch" baseDelay={320} staggerMs={24} />
           </h1>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl">
             <WordReveal 
               text="Whether you have a technical opportunity, a distributed systems challenge, or want to discuss full-stack & AI engineering, my inbox is open."
               baseDelay={650}

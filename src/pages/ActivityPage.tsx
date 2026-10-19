@@ -23,7 +23,7 @@ const TIMELINE_EVENTS = [
     badge: "Current Milestone",
     title: "Full-Stack Distributed Systems & AI Retrieval",
     institution: "Independent Research & Production Builds",
-    description: "Architecting offline-first collaborative systems (DecisionVault with Dexie.js and Socket.IO) and building real-time grounded RAG applications (QueryMind / Find It with Gemini AI, Tavily API, and WebSockets).",
+    description: "Architecting offline-first collaborative systems (DecisionVault with Dexie.js and Socket.IO) and building real-time grounded RAG applications (QueryMind with Gemini AI, Tavily API, and WebSockets).",
     achievements: [
       "Engineered local-first Outbox Pattern reconciliation engine for zero-data-loss offline work",
       "Built bi-directional WebSocket streaming pipeline with sub-100ms time-to-first-token",
@@ -115,7 +115,7 @@ export const ActivityPage: React.FC<ActivityPageProps> = ({
           <h1 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-text-primary">
             <LetterReveal text="Activity & Career Milestones" baseDelay={320} staggerMs={22} />
           </h1>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl">
             <WordReveal 
               text="A chronological timeline of my engineering development, CTF security achievements, academic credentials, and open source code activity."
               baseDelay={650}

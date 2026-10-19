@@ -62,7 +62,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
           <h1 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-text-primary">
             <LetterReveal text="About Adarsh M" baseDelay={320} staggerMs={26} />
           </h1>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl">
             <WordReveal 
               text="Software Engineer specializing in production-ready distributed architectures, full-stack web platforms, cross-platform mobile apps with Flutter, and AI applications."
               baseDelay={650}

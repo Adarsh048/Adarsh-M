@@ -67,7 +67,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           <h1 className="text-2xl sm:text-4xl font-bold font-display tracking-tight text-text-primary">
             <LetterReveal text="Featured Projects & Case Studies" baseDelay={320} staggerMs={22} />
           </h1>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl">
             <WordReveal 
               text="In-depth architecture blueprints, distributed sync patterns, and grounded AI retrieval engines built with production reliability."
               baseDelay={650}
@@ -142,6 +142,16 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
             </div>
           </div>
 
+          {/* Interface Preview Banner */}
+          <div className="relative w-full h-52 sm:h-72 rounded-xl overflow-hidden border border-border-subtle bg-neutral-950 shadow-inner">
+            <img
+              src="/projects/decision-vault.jpg"
+              alt="DecisionVault Architecture Platform Interface"
+              className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+
           <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
             Technical organizations lose institutional context when architectural decisions are scattered across chats, pull requests, and meetings. DecisionVault provides a centralized, offline-capable workspace for engineering teams to propose, debate, and version ADRs with zero interruption during network disconnects.
           </p>
@@ -200,7 +210,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
         </section>
       )}
 
-      {/* Deep Dive 2: QueryMind / Find It (AI & Retrieval) */}
+      {/* Deep Dive 2: QueryMind (AI & Retrieval) */}
       {(selectedFilter === 'all' || selectedFilter === 'ai') && (
         <section className="p-4 sm:p-7 rounded-2xl border border-border-main bg-panel-bg space-y-5 sm:space-y-6 animate-hero-card" style={{ animationDelay: '1400ms' }}>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border-main/60 pb-4">
@@ -214,7 +224,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                 </span>
               </div>
               <h2 className="text-xl sm:text-2xl font-bold font-display text-text-primary">
-                QueryMind / Find It
+                QueryMind
               </h2>
               <p className="text-xs font-mono text-text-secondary">
                 AI Search & Research Engine with Token Streaming
@@ -232,6 +242,16 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                 <span>Source</span>
               </a>
             </div>
+          </div>
+
+          {/* Interface Preview Banner */}
+          <div className="relative w-full h-52 sm:h-72 rounded-xl overflow-hidden border border-border-subtle bg-neutral-950 shadow-inner">
+            <img
+              src="/projects/query-mind.jpg"
+              alt="QueryMind AI Search & Research Engine Interface"
+              className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-500"
+              loading="lazy"
+            />
           </div>
 
           <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
@@ -331,6 +351,16 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
+          </div>
+
+          {/* Interface Preview Banner */}
+          <div className="relative w-full h-52 sm:h-72 rounded-xl overflow-hidden border border-border-subtle bg-neutral-950 shadow-inner">
+            <img
+              src="/projects/finsight.jpg"
+              alt="FinSight Finance Analytics Dashboard Interface"
+              className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-500"
+              loading="lazy"
+            />
           </div>
 
           <p className="text-sm sm:text-base text-text-secondary leading-relaxed">

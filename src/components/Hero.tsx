@@ -159,7 +159,7 @@ export const Hero: React.FC = () => {
     <section id="hero" className="relative pt-4 sm:pt-5 pb-8 transition-colors">
       <div className="w-full space-y-8">
         
-        {/* Asymmetrical Hero Layout matching srexrg.me */}
+        {/* Asymmetrical Hero Layout */}
         <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 justify-between items-start sm:items-center">
           
           {/* Main Content Column */}
@@ -168,7 +168,7 @@ export const Hero: React.FC = () => {
             <div className="space-y-3">
               
               {/* Status & Decryption Helper Badges with Walking Torch Platform */}
-              <div className="pt-5 sm:pt-[86px] select-none animate-hero-badge" style={{ animationDelay: '140ms' }}>
+              <div className="pt-16 sm:pt-[86px] select-none animate-hero-badge" style={{ animationDelay: '140ms' }}>
                 <div id="hero-badge-platform" className="relative inline-flex flex-wrap sm:flex-nowrap items-center gap-2 self-start sm:self-auto max-w-full">
                   {/* Available for Engineering Roles Badge */}
                   <div id="hero-badge-roles" className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-2.5 py-0.5 rounded-full border border-border-main bg-badge-bg text-text-secondary text-[10px] min-[360px]:text-[11px] sm:text-xs font-mono whitespace-nowrap shrink-0">
@@ -249,7 +249,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Introduction Statement with Slow Word Reveal */}
-            <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-[540px]">
+            <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-3xl">
               <WordReveal 
                 text={PROFILE.introduction}
                 baseDelay={1050}
