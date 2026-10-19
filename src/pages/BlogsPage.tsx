@@ -8,7 +8,7 @@ import {
   Sparkles,
   CheckCircle2
 } from 'lucide-react';
-import { LetterReveal } from '../components/LetterReveal';
+import { LetterReveal, WordReveal } from '../components/LetterReveal';
 
 interface BlogPost {
   id: string;
@@ -188,17 +188,21 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight text-text-primary leading-[1.12]">
-            <LetterReveal text="Engineering Blogs" isActive={true} baseDelay={140} staggerMs={24} />
+            <LetterReveal text="Engineering Blogs" isActive={true} baseDelay={240} staggerMs={24} />
           </h1>
         </div>
 
         <p className="text-base sm:text-lg text-text-secondary font-sans leading-relaxed max-w-3xl">
-          Deep-dives into offline-first state synchronization, low-latency WebSocket token streaming, grounded RAG architectures, and full-stack software resilience.
+          <WordReveal 
+            text="Deep-dives into offline-first state synchronization, low-latency WebSocket token streaming, grounded RAG architectures, and full-stack software resilience."
+            baseDelay={500}
+            staggerMs={24}
+          />
         </p>
       </header>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2.5 border-b border-border-main pb-4">
+      <div className="flex flex-wrap gap-2.5 border-b border-border-main pb-4 animate-hero-fade-up" style={{ animationDelay: '820ms' }}>
         {categories.map((cat) => (
           <button
             key={cat}
@@ -219,8 +223,8 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({
         {filteredArticles.map((article, idx) => (
           <section
             key={article.id}
-            className="p-6 sm:p-8 rounded-2xl border border-border-main bg-panel-bg space-y-6 shadow-xs animate-hero-fade-up"
-            style={{ animationDelay: `${260 + idx * 100}ms` }}
+            className="p-6 sm:p-8 rounded-2xl border border-border-main bg-panel-bg space-y-6 shadow-xs animate-hero-card"
+            style={{ animationDelay: `${980 + idx * 140}ms` }}
           >
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-mono text-text-muted">
               <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold">
@@ -301,7 +305,7 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({
       </div>
 
       {/* Footer Return Callout */}
-      <div className="pt-6 border-t border-border-main flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="pt-6 border-t border-border-main flex flex-col sm:flex-row items-center justify-between gap-4 animate-hero-fade-up" style={{ animationDelay: '1450ms' }}>
         <button
           onClick={onBack}
           className="inline-flex items-center gap-2 text-xs font-mono text-text-secondary hover:text-text-primary transition-colors cursor-pointer"

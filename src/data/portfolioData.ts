@@ -4,7 +4,7 @@ export const PROFILE = {
   name: "Adarsh M",
   tagline: "Full-Stack Software Engineer • React, Node.js, Express & Flutter",
   introduction: "I engineer scalable web & mobile platforms across React, JavaScript, TypeScript, Flutter, Node.js, and Express—specializing in REST APIs, offline-first resilience, and grounded AI workflows.",
-  location: "SRMIST, Chennai, India",
+  location: "India",
   timezone: "Asia/Kolkata",
   email: "adarsh048a@gmail.com",
   github: "https://github.com/Adarsh048",
@@ -16,7 +16,7 @@ export const PROFILE = {
     specialization: "Cyber Security Specialization",
     institution: "SRM Institute of Science and Technology",
     cgpa: "8.76 / 10.0",
-    period: "2021 — 2025"
+    period: "2022 — 2026"
   },
   stats: {
     commits: "500+",

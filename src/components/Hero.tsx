@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Clock, MapPin, Sparkles, ArrowDown, ExternalLink, Terminal, Shuffle } from 'lucide-react';
+import { Clock, MapPin, Sparkles, ArrowDown, ExternalLink, Shuffle } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { WordReveal } from './LetterReveal';
 import { PROFILE } from '../data/portfolioData';
+import codeLogoTransparent from '../assets/code-logo-transparent.png';
 
 interface Greeting {
   text: string;
@@ -30,12 +31,19 @@ export const Hero: React.FC = () => {
   const [greetingIndex, setGreetingIndex] = useState(0);
   const [displayText, setDisplayText] = useState(GREETINGS[0].text);
   const [isScrambling, setIsScrambling] = useState(false);
+  const [isEmblemSpinning, setIsEmblemSpinning] = useState(false);
   
   const isScramblingRef = useRef(false);
   const greetingIndexRef = useRef(0);
   const isHoveredRef = useRef(false);
   const autoTimerRef = useRef<number | null>(null);
   const scrambleTimerRef = useRef<number | null>(null);
+
+  const handleEmblemTap = () => {
+    if (isEmblemSpinning) return;
+    setIsEmblemSpinning(true);
+    setTimeout(() => setIsEmblemSpinning(false), 650);
+  };
 
   // Synchronize greetingIndex ref
   useEffect(() => {
@@ -168,16 +176,35 @@ export const Hero: React.FC = () => {
     <section id="hero" className="relative pt-4 sm:pt-5 pb-8 transition-colors">
       <div className="w-full space-y-8">
         
-        {/* Asymmetrical Hero Layout */}
-        <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 justify-between items-start sm:items-center">
-          
-          {/* Main Content Column */}
-          <div className="flex flex-col flex-1 space-y-4">
+        {/* Hero Main Content */}
+        <div className="flex flex-col space-y-4">
             
             <div className="space-y-3">
               
+              {/* Mobile-Only Code Emblem (< \ >): animated hologram levitation & glow, interactive tap response */}
+              <div className="block sm:hidden pt-7 pb-1 select-none animate-hero-fade-up" style={{ animationDelay: '80ms' }}>
+                <button
+                  type="button"
+                  onClick={handleEmblemTap}
+                  className={`inline-block cursor-pointer focus-visible:outline-none transition-transform duration-500 ease-out active:scale-90 ${
+                    isEmblemSpinning ? 'rotate-[360deg] scale-110' : ''
+                  }`}
+                  aria-label="Interactive Code Emblem"
+                  title="Tap to spin"
+                >
+                  <img
+                    src={codeLogoTransparent}
+                    alt="Developer Code Emblem"
+                    className="w-20 h-20 min-[380px]:w-24 min-[380px]:h-24 object-contain invert dark:invert-0 animate-code-emblem pointer-events-none"
+                    width={96}
+                    height={96}
+                    loading="eager"
+                  />
+                </button>
+              </div>
+
               {/* Status & Decryption Helper Badges with Walking Torch Platform */}
-              <div className="pt-16 sm:pt-[86px] select-none animate-hero-badge" style={{ animationDelay: '140ms' }}>
+              <div className="pt-10 sm:pt-[86px] select-none animate-hero-badge" style={{ animationDelay: '140ms' }}>
                 <div id="hero-badge-platform" className="relative inline-flex flex-wrap sm:flex-nowrap items-center gap-2 self-start sm:self-auto max-w-full">
                   {/* Available for Engineering Roles Badge */}
                   <div id="hero-badge-roles" className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-2.5 py-0.5 rounded-full border border-border-main bg-badge-bg text-text-secondary text-[10px] min-[360px]:text-[11px] sm:text-xs font-mono whitespace-nowrap shrink-0">
@@ -214,17 +241,17 @@ export const Hero: React.FC = () => {
                     title="Click to cycle greetings"
                     aria-label={`Greeting: ${displayText}. Click to cycle.`}
                   >
-                    <span className="text-lg min-[360px]:text-xl sm:text-2xl md:text-3xl font-display font-bold tracking-tight text-text-primary underline decoration-border-main group-hover:decoration-text-primary underline-offset-4 decoration-2 transition-colors whitespace-nowrap">
+                    <span className="text-xl min-[360px]:text-2xl sm:text-2xl md:text-3xl font-display font-bold tracking-tight text-text-primary underline decoration-border-main group-hover:decoration-text-primary underline-offset-4 decoration-2 transition-colors whitespace-nowrap">
                       {displayText},
                     </span>
                     <span className="inline-flex items-center ml-2 text-text-secondary group-hover:text-text-primary transition-colors align-middle">
-                      <Shuffle className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isScrambling ? 'animate-spin' : ''}`} />
+                      <Shuffle className={`w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 ${isScrambling ? 'animate-spin' : ''}`} />
                     </span>
                   </button>
                 </div>
 
                 {/* Row 2: Prominent commanding Name headline with exquisite slow letter ripple reveal */}
-                <h1 className="text-2xl min-[360px]:text-3xl sm:text-5xl md:text-6xl lg:text-[64px] font-display font-extrabold tracking-tighter text-text-primary leading-[1.05] whitespace-nowrap">
+                <h1 className="text-3xl min-[360px]:text-4xl min-[400px]:text-[44px] sm:text-5xl md:text-6xl lg:text-[64px] font-display font-extrabold tracking-tighter text-text-primary leading-[1.05] whitespace-nowrap">
                   <span className="inline-block animate-word-reveal" style={{ animationDelay: '360ms' }}>
                     I'm
                   </span>{' '}
@@ -342,26 +369,6 @@ export const Hero: React.FC = () => {
                 </a>
               </div>
             </div>
-
-          </div>
-
-          {/* Right Column: Visual Portrait / Developer Monogram Card */}
-          <div className="self-start sm:self-auto shrink-0 animate-hero-card" style={{ animationDelay: '550ms' }}>
-            <div className="size-24 sm:size-28 rounded-2xl border border-border-main bg-panel-bg flex flex-col items-center justify-center p-3 relative select-none transition-colors">
-              <div className="size-10 sm:size-11 rounded-xl border border-border-main bg-bg-main flex items-center justify-center mb-1 text-text-primary shadow-sm">
-                <Terminal className="w-6 h-6 text-text-primary" />
-              </div>
-              <span className="font-mono text-xs font-bold text-text-primary tracking-wider">
-                adarsh.m
-              </span>
-              <span className="font-mono text-[10px] text-text-muted">
-                full_stack
-              </span>
-              <span className="absolute top-2 right-2 text-[8px] font-mono text-text-muted">
-                DEV.01
-              </span>
-            </div>
-          </div>
 
         </div>
 

@@ -62,14 +62,14 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-main bg-panel-bg text-xs font-mono text-text-secondary animate-hero-badge" style={{ animationDelay: '220ms' }}>
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Architecture & Systems Showcase</span>
+            <span>Selected Projects</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight text-text-primary leading-[1.12]">
-            <LetterReveal text="Featured Projects & Case Studies" baseDelay={320} staggerMs={22} />
+            <LetterReveal text="Projects & Engineering" baseDelay={320} staggerMs={22} />
           </h1>
           <p className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-3xl font-normal">
             <WordReveal 
-              text="In-depth architecture blueprints, distributed sync patterns, and grounded AI retrieval engines built with production reliability."
+              text="A selection of full-stack applications and AI-powered solutions I've designed and built, focused on practical problems, thoughtful architecture, and user experience."
               baseDelay={650}
               staggerMs={28}
             />
@@ -79,10 +79,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
         {/* Quick Filter Tags */}
         <div className="flex flex-wrap gap-2 pt-2 animate-hero-fade-up" style={{ animationDelay: '950ms' }}>
           {[
-            { id: 'all', label: 'All Systems' },
-            { id: 'distributed', label: 'Offline-First & Distributed' },
-            { id: 'ai', label: 'AI & Information Retrieval' },
-            { id: 'analytics', label: 'Financial & Metrics Analytics' },
+            { id: 'all', label: 'All Projects' },
+            { id: 'distributed', label: 'Full-Stack Development' },
+            { id: 'ai', label: 'AI Applications' },
+            { id: 'analytics', label: 'Data Visualization' },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -106,17 +106,14 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
             <div>
               <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                 <span className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/20">
-                  FLAGSHIP BUILD • 2025
-                </span>
-                <span className="text-xs font-mono text-text-muted">
-                  Full-Stack Distributed Architecture
+                  FULL-STACK ENGINEERING
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold font-display text-text-primary">
                 DecisionVault
               </h2>
               <p className="text-xs sm:text-sm font-mono text-text-secondary mt-0.5">
-                Offline-First Architecture Decision Record (ADR) Platform
+                Offline-First Architecture Decision Record Platform
               </p>
             </div>
 
@@ -128,7 +125,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border-main bg-bg-main hover:border-text-primary text-xs font-mono text-text-primary transition-colors"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
-                <span>Source</span>
+                <span>Source Code</span>
               </a>
               <a
                 href="https://decision-vault-for.vercel.app/"
@@ -136,7 +133,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-text-primary text-bg-main hover:opacity-90 text-xs font-mono font-semibold transition-opacity"
               >
-                <span>Live App</span>
+                <span>Live Demo</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -153,7 +150,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           </div>
 
           <p className="text-[15px] sm:text-base text-text-secondary leading-relaxed">
-            Technical organizations lose institutional context when architectural decisions are scattered across chats, pull requests, and meetings. DecisionVault provides a centralized, offline-capable workspace for engineering teams to propose, debate, and version ADRs with zero interruption during network disconnects.
+            Engineering teams need a reliable way to document technical decisions and collaborate on them. DecisionVault provides a centralized workspace for creating, reviewing, and managing Architecture Decision Records (ADRs), with offline persistence and real-time collaboration.
           </p>
 
           {/* Architecture Highlights Grid */}
@@ -161,47 +158,47 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
             <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
                 <WifiOff className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>Local-First Persistence (Dexie.js)</span>
+                <span>Offline-First Storage</span>
               </div>
               <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
-                All records and drafts persist to browser IndexedDB storage using Dexie.js. Users can compose, edit, and organize records seamlessly on flights, subways, or high-packet-loss environments.
+                Uses IndexedDB with Dexie.js to persist records locally, allowing users to continue working when their network connection is unavailable.
               </p>
             </div>
 
             <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
                 <Layers className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>Outbox Sync Worker</span>
+                <span>Background Synchronization</span>
               </div>
               <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
-                Offline mutations queue inside an indexed outbox table. A background service listener watches online events, performing atomic batch reconciliation to MongoDB with conflict resolution strategies.
+                Queues offline changes and synchronizes them when connectivity returns, helping keep local data and the backend aligned.
               </p>
             </div>
 
             <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
                 <Cpu className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>Socket.IO Collaboration</span>
+                <span>Real-Time Collaboration</span>
               </div>
               <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
-                Live team presence indicators, multi-editor notifications, and instant room broadcasts keep distributed teams in sync without requiring manual page reloads or polling.
+                Integrates Socket.IO for live updates and collaboration across workspace rooms without relying on continuous polling.
               </p>
             </div>
 
             <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
                 <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>3-Tier RBAC & Auth</span>
+                <span>Authentication & Access Control</span>
               </div>
               <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
-                Strict granular permission boundaries (Owner, Member, Viewer) enforced at both database and middleware levels. Secured via signed HTTP-only JWTs with CSRF guards.
+                Implements JWT-based authentication, HTTP-only cookies, and role-based permissions for Owners, Members, and Viewers.
               </p>
             </div>
           </div>
 
           {/* Technology Badges */}
           <div className="flex flex-wrap gap-2 pt-2 border-t border-border-main/60">
-            {["React", "TypeScript", "Node.js", "Express", "MongoDB", "Socket.IO", "IndexedDB", "Dexie.js", "Tailwind CSS", "JWT Auth"].map((t) => (
+            {["React", "TypeScript", "Node.js", "Express", "MongoDB", "Socket.IO", "IndexedDB", "Dexie.js", "Tailwind CSS", "JWT"].map((t) => (
               <span key={t} className="px-3 py-1 rounded-md border border-border-subtle bg-badge-bg text-xs font-mono text-text-secondary">
                 {t}
               </span>
@@ -217,17 +214,14 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
             <div>
               <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                 <span className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold border border-purple-500/20">
-                  AI ENGINEERING • 2025
-                </span>
-                <span className="text-xs font-mono text-text-muted">
-                  Information Retrieval & RAG
+                  AI APPLICATION DEVELOPMENT
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold font-display text-text-primary">
                 QueryMind
               </h2>
               <p className="text-xs sm:text-sm font-mono text-text-secondary mt-0.5">
-                AI Search & Research Engine with Token Streaming
+                AI-Powered Search & Research Application
               </p>
             </div>
 
@@ -239,7 +233,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border-main bg-bg-main hover:border-text-primary text-xs font-mono text-text-primary transition-colors"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
-                <span>Source</span>
+                <span>Source Code</span>
               </a>
             </div>
           </div>
@@ -255,53 +249,53 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           </div>
 
           <p className="text-[15px] sm:text-base text-text-secondary leading-relaxed">
-            Standard conversational chatbots suffer from stale training cutoffs and hallucinations. QueryMind solves this by executing real-time web discovery with Tavily Search API, passing filtered contextual evidence to Gemini AI, and streaming verifiable answers over WebSockets.
+            QueryMind combines live web search with generative AI to answer questions using relevant, retrieved information. It integrates the Tavily Search API with Gemini AI and delivers responses through a Python backend with WebSocket streaming.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
                 <Sparkles className="w-4 h-4 text-purple-500 shrink-0" />
-                <span>Grounded RAG Pipeline</span>
+                <span>Web-Grounded AI Responses</span>
               </div>
               <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
-                Incoming queries prompt an automated multi-query expansion, extracting live search results via Tavily and injecting fresh factual contexts directly into Gemini prompt templates.
+                Retrieves relevant web information through Tavily Search and uses it as context for Gemini-generated answers.
               </p>
             </div>
 
             <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
                 <Activity className="w-4 h-4 text-purple-500 shrink-0" />
-                <span>Bidirectional WebSocket Streaming</span>
+                <span>Streaming Responses</span>
               </div>
               <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
-                Eliminated slow HTTP polling. Tokens stream from Python FastAPI over WebSockets in real time, rendering Markdown text and source links with sub-100ms time-to-first-token.
+                Uses WebSockets to stream generated responses from the FastAPI backend, allowing users to see answers as they are produced.
               </p>
             </div>
 
             <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
                 <Boxes className="w-4 h-4 text-purple-500 shrink-0" />
-                <span>Cross-Platform Flutter Client</span>
+                <span>Cross-Platform Interface</span>
               </div>
               <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
-                Engineered with Dart and Flutter, providing smooth 60fps animations, native keyboard navigation, and responsive typography across mobile and desktop viewports.
+                Built with Flutter and Dart to provide a consistent application experience across supported platforms.
               </p>
             </div>
 
             <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
                 <Terminal className="w-4 h-4 text-purple-500 shrink-0" />
-                <span>FastAPI Microservice Layer</span>
+                <span>Asynchronous Backend</span>
               </div>
               <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
-                Asynchronous Python backend utilizing Pydantic data modeling, automated schema generation, and concurrent external API handling with httpx.
+                Uses FastAPI to handle application requests and integrate external AI and search services.
               </p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2 pt-2 border-t border-border-main/60">
-            {["Python", "FastAPI", "Flutter", "Dart", "Gemini AI", "Tavily Search API", "WebSockets", "RAG", "Markdown"].map((t) => (
+            {["Flutter", "Dart", "Python", "FastAPI", "Gemini AI", "Tavily Search API", "RAG", "WebSockets"].map((t) => (
               <span key={t} className="px-3 py-1 rounded-md border border-border-subtle bg-badge-bg text-xs font-mono text-text-secondary">
                 {t}
               </span>
@@ -317,17 +311,14 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
             <div>
               <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                 <span className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-sky-500/10 text-sky-600 dark:text-sky-400 font-bold border border-sky-500/20">
-                  FINTECH DASHBOARD • 2024
-                </span>
-                <span className="text-xs font-mono text-text-muted">
-                  Interactive Data Visualization
+                  FRONTEND & DATA VISUALIZATION
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold font-display text-text-primary">
                 FinSight
               </h2>
               <p className="text-xs sm:text-sm font-mono text-text-secondary mt-0.5">
-                Financial Portfolio Analytics & Anomaly Detection Dashboard
+                Interactive Finance Analytics Dashboard
               </p>
             </div>
 
@@ -339,7 +330,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border-main bg-bg-main hover:border-text-primary text-xs font-mono text-text-primary transition-colors"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
-                <span>Source</span>
+                <span>Source Code</span>
               </a>
               <a
                 href="https://finance-dashboard-teal-nine-23.vercel.app"
@@ -347,7 +338,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-text-primary text-bg-main hover:opacity-90 text-xs font-mono font-semibold transition-opacity"
               >
-                <span>Live App</span>
+                <span>Live Demo</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -364,26 +355,53 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           </div>
 
           <p className="text-[15px] sm:text-base text-text-secondary leading-relaxed">
-            Built to demystify personal cash flows and transaction histories. Features responsive Recharts graphs, categorical expense drilldowns, custom time-range aggregations, and persistent user configuration state.
+            FinSight is a finance dashboard designed to help users explore income, expenses, and spending patterns through interactive charts and organized transaction data.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-            <div className="p-4 rounded-xl border border-border-subtle bg-bg-main/60 space-y-1.5">
-              <span className="text-xs font-mono text-text-muted block">Chart Performance</span>
-              <span className="text-sm sm:text-base font-bold text-text-primary font-mono block">60 FPS Transitions</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
+                <Activity className="w-4 h-4 text-sky-500 shrink-0" />
+                <span>Interactive Data Visualization</span>
+              </div>
+              <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
+                Uses Recharts to display financial trends and make transaction data easier to understand.
+              </p>
             </div>
-            <div className="p-4 rounded-xl border border-border-subtle bg-bg-main/60 space-y-1.5">
-              <span className="text-xs font-mono text-text-muted block">Aggregation Engine</span>
-              <span className="text-sm sm:text-base font-bold text-text-primary font-mono block">Client-Side Grouping</span>
+
+            <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
+                <Layers className="w-4 h-4 text-sky-500 shrink-0" />
+                <span>Expense Analysis</span>
+              </div>
+              <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
+                Supports filtering and exploring financial records to help users examine spending categories and trends.
+              </p>
             </div>
-            <div className="p-4 rounded-xl border border-border-subtle bg-bg-main/60 space-y-1.5">
-              <span className="text-xs font-mono text-text-muted block">Responsive Breakpoints</span>
-              <span className="text-sm sm:text-base font-bold text-text-primary font-mono block">Mobile to Ultra-Wide</span>
+
+            <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
+                <Cpu className="w-4 h-4 text-sky-500 shrink-0" />
+                <span>State Management</span>
+              </div>
+              <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
+                Uses React Context API and useReducer to manage application state and coordinate dashboard interactions.
+              </p>
+            </div>
+
+            <div className="p-4 sm:p-4.5 rounded-xl border border-border-subtle bg-bg-main/60 space-y-2">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-text-primary">
+                <Sparkles className="w-4 h-4 text-sky-500 shrink-0" />
+                <span>Usability & Data Export</span>
+              </div>
+              <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
+                Includes search, filtering, CSV/JSON export, and light and dark themes for a more flexible dashboard experience.
+              </p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2 pt-2 border-t border-border-main/60">
-            {["React", "JavaScript", "Tailwind CSS", "Recharts", "REST APIs", "Vite"].map((t) => (
+            {["React", "JavaScript", "Tailwind CSS", "Recharts", "Context API", "REST APIs", "Vite"].map((t) => (
               <span key={t} className="px-3 py-1 rounded-md border border-border-subtle bg-badge-bg text-xs font-mono text-text-secondary">
                 {t}
               </span>

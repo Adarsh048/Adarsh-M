@@ -50,7 +50,13 @@ export const App: React.FC = () => {
   const renderContent = () => {
     switch (currentPath) {
       case '/about':
-        return <AboutPage onBack={() => navigateTo('/')} />;
+        return (
+          <AboutPage 
+            onBack={() => navigateTo('/')} 
+            onNavigateToProjects={() => navigateTo('/projects')}
+            onNavigateToContact={() => navigateTo('/contact')}
+          />
+        );
       case '/stack':
         return (
           <StackPage 
@@ -116,7 +122,7 @@ export const App: React.FC = () => {
 
         {/* Centered Editorial Container (Balanced max-w-3xl: 768px) */}
         <main id="portfolio-main" className="max-w-3xl mx-auto px-4 sm:px-6 pb-24 md:pb-12 flex flex-col space-y-10 relative z-10 w-full overflow-x-clip">
-          <div key={currentPath} className="w-full flex flex-col space-y-10">
+          <div key={currentPath} className="w-full flex flex-col space-y-10 animate-page-enter">
             {renderContent()}
           </div>
         </main>

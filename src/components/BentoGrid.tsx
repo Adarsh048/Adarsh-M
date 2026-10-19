@@ -286,12 +286,12 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ onOpenFullActivity }) => {
         {/* =========================================================================
             ROW 2: Bottom Bento Triad (Photo with Kanji + Social / LeetCode + Offline)
             ========================================================================= */}
-        <div ref={row2.ref} className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-3.5">
+        <div ref={row2.ref} className="grid grid-cols-2 sm:grid-cols-12 gap-2.5 sm:gap-3.5">
 
-          {/* Card 3: Cinematic Monochrome Founder Portrait with Vertical Japanese Kanji (Col Span 4) */}
+          {/* Card 3: Cinematic Monochrome Founder Portrait with Vertical Japanese Kanji (Col Span 1 on mobile, Col Span 4 on sm) */}
           <div
             onClick={onOpenFullActivity}
-            className={`sm:col-span-4 relative group overflow-hidden rounded-[26px] border border-border-main bg-neutral-950 min-h-[180px] sm:min-h-[210px] cursor-pointer transition-all duration-300 hover:border-text-primary/70 hover:shadow-md ${
+            className={`col-span-1 sm:col-span-4 relative group overflow-hidden rounded-[26px] border border-border-main bg-neutral-950 h-full min-h-[220px] sm:min-h-[210px] cursor-pointer transition-all duration-300 hover:border-text-primary/70 hover:shadow-md ${
               row2.isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-8 pointer-events-none'
             }`}
             style={{ animationDelay: '200ms' }}
@@ -305,128 +305,133 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ onOpenFullActivity }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/20" />
 
             {/* Vertical Japanese Text: こんにちは (Konnichiwa) along left edge */}
-            <div className="absolute left-3.5 bottom-3.5 text-white font-bold text-[13px] tracking-widest [writing-mode:vertical-rl] select-none pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-sans">
+            <div className="absolute left-2.5 sm:left-3.5 bottom-2.5 sm:bottom-3.5 text-white font-bold text-[11px] sm:text-[13px] tracking-widest [writing-mode:vertical-rl] select-none pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-sans">
               こんにちは
             </div>
 
             {/* Circular Arrow Badge at Top Right */}
-            <div className="absolute top-3.5 right-3.5 p-2 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-white group-hover:scale-110 group-hover:bg-black/70 transition-all">
+            <div className="absolute top-2.5 sm:top-3.5 right-2.5 sm:right-3.5 p-1.5 sm:p-2 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-white group-hover:scale-110 group-hover:bg-black/70 transition-all">
               <ArrowUpRight className="w-3.5 h-3.5" />
             </div>
           </div>
 
-          {/* Card 4: LinkedIn & X Social Cards (Col Span 4) */}
-          <div
-            className={`sm:col-span-4 grid grid-cols-2 gap-2.5 min-h-[180px] sm:min-h-[210px] ${
-              row2.isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-8 pointer-events-none'
-            }`}
-            style={{ animationDelay: '280ms' }}
-          >
-            {/* LinkedIn Card */}
-            <a
-              href={PROFILE.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-[22px] bg-[#3e76ba] hover:bg-[#3468a6] text-white p-4 flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-[1.03] shadow-sm select-none group"
-              title="LinkedIn: Adarsh M • I connect."
+          {/* Right Column Group: LinkedIn & X + Mail Card */}
+          <div className="col-span-1 sm:col-span-8 flex flex-col sm:grid sm:grid-cols-2 gap-2.5 sm:gap-3.5 h-full">
+
+            {/* Card 4: LinkedIn & X Social Cards */}
+            <div
+              className={`grid grid-cols-2 gap-2 sm:gap-2.5 min-h-[75px] sm:min-h-[210px] ${
+                row2.isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-8 pointer-events-none'
+              }`}
+              style={{ animationDelay: '280ms' }}
             >
-              <div className="flex items-center justify-center transition-transform duration-200 group-hover:scale-110 mb-1.5">
-                <LinkedinIcon className="w-8 h-8 text-white" strokeWidth={2.2} />
-              </div>
-              <div className="text-sm sm:text-base font-bold text-white font-display tracking-tight">
-                LinkedIn
-              </div>
-              <span className="text-xs sm:text-sm font-mono text-white/90 tracking-tight">
-                I connect.
-              </span>
-            </a>
-
-            {/* X / Twitter Card */}
-            <a
-              href={PROFILE.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-[22px] bg-neutral-900 hover:bg-neutral-800 dark:bg-[#212224] border border-neutral-800 dark:border-[#2e3034] hover:border-neutral-500 text-white p-4 flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-[1.03] shadow-sm select-none group"
-              title="X: @adar_sxh • I discuss."
-            >
-              <div className="flex items-center justify-center transition-transform duration-200 group-hover:scale-110 mb-1.5">
-                <XIcon className="w-7 h-7 text-white" />
-              </div>
-              <div className="text-sm sm:text-base font-bold text-white font-display tracking-tight">
-                X
-              </div>
-              <span className="text-xs sm:text-sm font-mono text-neutral-300 dark:text-neutral-400 tracking-tight">
-                I discuss.
-              </span>
-            </a>
-          </div>
-
-          {/* Card 5: Mail Card (Col Span 4) */}
-          <div
-            onClick={() => {
-              window.location.href = `mailto:${PROFILE.email}?subject=${encodeURIComponent("Software Engineering Opportunity — Adarsh M")}`;
-            }}
-            className={`sm:col-span-4 rounded-[26px] border border-border-main hover:border-neutral-400 bg-white dark:bg-[#0a0a0c] dark:bg-gradient-to-br dark:from-[#16171d] dark:via-[#101114] dark:to-[#0a0a0c] p-5 flex flex-col items-center justify-between text-center relative overflow-hidden transition-all duration-300 shadow-xs hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_30px_rgba(255,255,255,0.08)] cursor-pointer select-none group min-h-[185px] sm:min-h-[210px] ${
-              row2.isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-8 pointer-events-none'
-            }`}
-            style={{ animationDelay: '360ms' }}
-            title={`Click to email ${PROFILE.email}`}
-          >
-            {/* Top Right Ambient Subtle Glow */}
-            <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-neutral-100/80 dark:bg-white/[0.04] blur-2xl pointer-events-none group-hover:bg-neutral-200/60 dark:group-hover:bg-white/[0.08] transition-all duration-500" />
-
-            {/* Faint Envelope Watermark */}
-            <MailWatermark className="absolute -bottom-6 -right-6 w-36 h-36 text-neutral-900/[0.04] dark:text-white/[0.06] pointer-events-none select-none transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3" />
-
-            {/* Top: Status Pill */}
-            <div className="relative z-10 w-full flex items-center justify-center">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100/90 dark:bg-white/[0.06] border border-neutral-200/80 dark:border-white/15 text-[10px] font-mono text-neutral-700 dark:text-neutral-300 shadow-xs backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-white animate-pulse shadow-[0_0_4px_rgba(16,185,129,0.8)] dark:shadow-[0_0_4px_rgba(255,255,255,0.8)]" />
-                <span className="text-neutral-900 dark:text-white font-medium">Available for roles</span>
-              </div>
-            </div>
-
-            {/* Center: Tactile Mail Emblem & Title */}
-            <div className="relative z-10 space-y-2 flex flex-col items-center my-auto py-1">
-              <div className="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.12] dark:to-white/[0.02] border border-neutral-200 dark:border-white/20 shadow-xs dark:shadow-[0_4px_16px_rgba(0,0,0,0.5)] flex items-center justify-center text-neutral-900 dark:text-white group-hover:scale-110 group-hover:border-neutral-400 dark:group-hover:border-white/35 transition-all duration-300">
-                <Mail className="w-5 h-5 text-neutral-900 dark:text-white drop-shadow-sm" />
-              </div>
-
-              <div className="space-y-0.5">
-                <div className="text-base sm:text-lg font-bold font-display text-neutral-950 dark:text-white tracking-tight flex items-center justify-center gap-1.5">
-                  <span>Mail</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-950 dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                </div>
-                <div className="text-[11px] sm:text-xs font-mono text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-800 dark:group-hover:text-neutral-200 transition-colors">
-                  {PROFILE.email}
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom: Solid High-Contrast Action Button */}
-            <div className="relative z-10 w-full pt-1">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleCopyEmail(e);
-                }}
-                type="button"
-                className="w-full inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-100 dark:text-neutral-950 text-xs font-mono font-bold transition-all duration-200 shadow-sm dark:shadow-[0_2px_12px_rgba(255,255,255,0.12)] active:scale-95 cursor-pointer"
-                title="Copy email to clipboard"
+              {/* LinkedIn Card */}
+              <a
+                href={PROFILE.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-2xl sm:rounded-[22px] bg-[#3e76ba] hover:bg-[#3468a6] text-white p-2 sm:p-4 flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-[1.03] shadow-sm select-none group"
+                title="LinkedIn: Adarsh M • I connect."
               >
-                {copiedEmail ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400 dark:text-neutral-950 stroke-[2.5]" />
-                    <span>copied to clipboard!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5 text-white dark:text-neutral-950" />
-                    <span>copy email</span>
-                  </>
-                )}
-              </button>
+                <div className="flex items-center justify-center transition-transform duration-200 group-hover:scale-110 mb-0.5 sm:mb-1.5">
+                  <LinkedinIcon className="w-5 h-5 sm:w-8 sm:h-8 text-white" strokeWidth={2.2} />
+                </div>
+                <div className="text-[11px] sm:text-base font-bold text-white font-display tracking-tight leading-tight">
+                  LinkedIn
+                </div>
+                <span className="text-[9px] sm:text-sm font-mono text-white/90 tracking-tight leading-tight">
+                  I connect.
+                </span>
+              </a>
+
+              {/* X / Twitter Card */}
+              <a
+                href={PROFILE.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-2xl sm:rounded-[22px] bg-neutral-900 hover:bg-neutral-800 dark:bg-[#212224] border border-neutral-800 dark:border-[#2e3034] hover:border-neutral-500 text-white p-2 sm:p-4 flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-[1.03] shadow-sm select-none group"
+                title="X: @adar_sxh • I discuss."
+              >
+                <div className="flex items-center justify-center transition-transform duration-200 group-hover:scale-110 mb-0.5 sm:mb-1.5">
+                  <XIcon className="w-4.5 h-4.5 sm:w-7 sm:h-7 text-white" />
+                </div>
+                <div className="text-[11px] sm:text-base font-bold text-white font-display tracking-tight leading-tight">
+                  X
+                </div>
+                <span className="text-[9px] sm:text-sm font-mono text-neutral-300 dark:text-neutral-400 tracking-tight leading-tight">
+                  I discuss.
+                </span>
+              </a>
             </div>
+
+            {/* Card 5: Mail Card */}
+            <div
+              onClick={() => {
+                window.location.href = `mailto:${PROFILE.email}?subject=${encodeURIComponent("Software Engineering Opportunity — Adarsh M")}`;
+              }}
+              className={`rounded-[26px] border border-border-main hover:border-neutral-400 bg-white dark:bg-[#0a0a0c] dark:bg-gradient-to-br dark:from-[#16171d] dark:via-[#101114] dark:to-[#0a0a0c] p-3 sm:p-5 flex flex-col items-center justify-between text-center relative overflow-hidden transition-all duration-300 shadow-xs hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_30px_rgba(255,255,255,0.08)] cursor-pointer select-none group flex-1 min-h-[140px] sm:min-h-[210px] ${
+                row2.isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-8 pointer-events-none'
+              }`}
+              style={{ animationDelay: '360ms' }}
+              title={`Click to email ${PROFILE.email}`}
+            >
+              {/* Top Right Ambient Subtle Glow */}
+              <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-neutral-100/80 dark:bg-white/[0.04] blur-2xl pointer-events-none group-hover:bg-neutral-200/60 dark:group-hover:bg-white/[0.08] transition-all duration-500" />
+
+              {/* Faint Envelope Watermark */}
+              <MailWatermark className="absolute -bottom-6 -right-6 w-36 h-36 text-neutral-900/[0.04] dark:text-white/[0.06] pointer-events-none select-none transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3" />
+
+              {/* Top: Status Pill */}
+              <div className="relative z-10 w-full flex items-center justify-center">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-neutral-100/90 dark:bg-white/[0.06] border border-neutral-200/80 dark:border-white/15 text-[9px] sm:text-[10px] font-mono text-neutral-700 dark:text-neutral-300 shadow-xs backdrop-blur-sm max-w-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-white animate-pulse shadow-[0_0_4px_rgba(16,185,129,0.8)] dark:shadow-[0_0_4px_rgba(255,255,255,0.8)] shrink-0" />
+                  <span className="text-neutral-900 dark:text-white font-medium truncate">Available for roles</span>
+                </div>
+              </div>
+
+              {/* Center: Tactile Mail Emblem & Title */}
+              <div className="relative z-10 space-y-1 sm:space-y-2 flex flex-col items-center my-auto py-1">
+                <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-neutral-100 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.12] dark:to-white/[0.02] border border-neutral-200 dark:border-white/20 shadow-xs dark:shadow-[0_4px_16px_rgba(0,0,0,0.5)] flex items-center justify-center text-neutral-900 dark:text-white group-hover:scale-110 group-hover:border-neutral-400 dark:group-hover:border-white/35 transition-all duration-300">
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-900 dark:text-white drop-shadow-sm" />
+                </div>
+
+                <div className="space-y-0.5 max-w-full px-1">
+                  <div className="text-sm sm:text-lg font-bold font-display text-neutral-950 dark:text-white tracking-tight flex items-center justify-center gap-1.5">
+                    <span>Mail</span>
+                    <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-950 dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </div>
+                  <div className="text-[10px] sm:text-xs font-mono text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-800 dark:group-hover:text-neutral-200 transition-colors truncate">
+                    {PROFILE.email}
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom: Solid High-Contrast Action Button */}
+              <div className="relative z-10 w-full pt-1">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCopyEmail(e);
+                  }}
+                  type="button"
+                  className="w-full inline-flex items-center justify-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-100 dark:text-neutral-950 text-[11px] sm:text-xs font-mono font-bold transition-all duration-200 shadow-sm dark:shadow-[0_2px_12px_rgba(255,255,255,0.12)] active:scale-95 cursor-pointer"
+                  title="Copy email to clipboard"
+                >
+                  {copiedEmail ? (
+                    <>
+                      <Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400 dark:text-neutral-950 stroke-[2.5]" />
+                      <span className="truncate">copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white dark:text-neutral-950" />
+                      <span className="truncate">copy email</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
           </div>
 
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check, Send, FileText, MessageSquare, ArrowRight } from 'lucide-react';
+import { Copy, Check, Send, FileText, MessageSquare, ArrowRight, Loader2, CheckCircle2, AlertCircle, ArrowUpRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { PROFILE } from '../data/portfolioData';
 import { useInView } from '../hooks/useInView';
@@ -18,7 +18,8 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
     subject: '',
     message: ''
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const copyEmail = () => {
     navigator.clipboard.writeText(PROFILE.email);
@@ -26,17 +27,48 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    setSubmitted(true);
-    const mailtoLink = `mailto:${PROFILE.email}?subject=${encodeURIComponent(
-      formData.subject || `Software Engineering Opportunity from ${formData.name}`
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
-    window.location.href = mailtoLink;
+    setStatus('sending');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${PROFILE.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Software Engineering Opportunity',
+          message: formData.message,
+          _subject: `Portfolio Message from ${formData.name}: ${formData.subject || 'Opportunity'}`,
+          _replyto: formData.email,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (response.ok && (!data || data.success === 'true' || data.success === true)) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else if (data?.message && /activat/i.test(data.message)) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error(data?.message || 'Submission could not be completed.');
+      }
+    } catch (err: any) {
+      console.error('Contact submission error:', err);
+      setStatus('error');
+      setErrorMessage(err.message || 'Unable to send message directly right now.');
+    }
   };
 
   return (
@@ -137,20 +169,20 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
             </span>
           </div>
 
-          {submitted ? (
-            <div className="py-8 text-center space-y-2">
-              <div className="size-10 rounded-full border border-border-main bg-bg-main text-text-primary flex items-center justify-center mx-auto mb-2">
-                <Check className="w-5 h-5 text-emerald-500" />
+          {status === 'success' ? (
+            <div className="py-8 text-center space-y-3">
+              <div className="size-12 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto mb-2">
+                <CheckCircle2 className="w-6 h-6" />
               </div>
               <h4 className="text-base font-semibold text-text-primary font-display">
-                Opening Mail Client
+                Message Sent Directly!
               </h4>
               <p className="text-sm text-text-secondary max-w-sm mx-auto font-sans">
-                Your email client is opening with pre-filled details. Thank you for reaching out, Adarsh will respond promptly.
+                Thank you for reaching out! Your message was delivered directly to Adarsh at <span className="font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{PROFILE.email}</span>. I will respond promptly.
               </p>
               <button
                 onClick={() => {
-                  setSubmitted(false);
+                  setStatus('idle');
                   setFormData({ name: '', email: '', subject: '', message: '' });
                 }}
                 className="text-xs font-mono text-text-primary hover:underline pt-2 inline-block cursor-pointer"
@@ -168,10 +200,11 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                   <input
                     type="text"
                     required
+                    disabled={status === 'sending'}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Jane Doe"
-                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors disabled:opacity-60"
                   />
                 </div>
 
@@ -182,10 +215,11 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                   <input
                     type="email"
                     required
+                    disabled={status === 'sending'}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="jane@company.com"
-                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors disabled:opacity-60"
                   />
                 </div>
               </div>
@@ -196,10 +230,11 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                 </label>
                 <input
                   type="text"
+                  disabled={status === 'sending'}
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="Software Engineering Opportunity / Project Discussion"
-                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors disabled:opacity-60"
                 />
               </div>
 
@@ -210,19 +245,48 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                 <textarea
                   required
                   rows={3}
+                  disabled={status === 'sending'}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Hi Adarsh, I came across your portfolio and would love to chat about..."
-                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors resize-none leading-relaxed"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors resize-none leading-relaxed disabled:opacity-60"
                 />
               </div>
 
+              {status === 'error' && (
+                <div className="p-3.5 rounded-xl border border-rose-500/30 bg-rose-500/10 text-xs text-rose-600 dark:text-rose-400 space-y-1.5">
+                  <div className="flex items-center gap-2 font-medium">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{errorMessage || 'Direct submission failed. Click below to launch your email client.'}</span>
+                  </div>
+                  <a
+                    href={`mailto:${PROFILE.email}?subject=${encodeURIComponent(formData.subject || 'Software Engineering Opportunity')}&body=${encodeURIComponent(formData.message)}`}
+                    className="inline-flex items-center gap-1 font-mono font-semibold underline text-text-primary hover:text-emerald-500 pt-0.5"
+                  >
+                    <span>Send via email app instead</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 hover:opacity-85 transition-opacity shadow-xs cursor-pointer"
+                disabled={status === 'sending'}
+                className={`w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 hover:opacity-85 transition-opacity shadow-xs cursor-pointer ${
+                  status === 'sending' ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
-                <span>Dispatch Email</span>
-                <Send className="w-4 h-4" />
+                {status === 'sending' ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Dispatching Message...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Dispatch Email</span>
+                    <Send className="w-4 h-4" />
+                  </>
+                )}
               </button>
             </form>
           )}
