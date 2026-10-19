@@ -15,11 +15,17 @@ interface ProjectCardProps {
   onOpenFullProjects?: () => void;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenFullProjects }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenFullProjects, index }) => {
+  const { ref, isInView } = useInView<HTMLElement>({ threshold: 0.05 });
+
   return (
     <article
+      ref={ref}
       onClick={onOpenFullProjects}
-      className="group relative rounded-2xl border border-border-main bg-panel-bg overflow-hidden transition-all duration-300 hover:border-text-primary/60 hover:shadow-xl cursor-pointer flex flex-col justify-between"
+      className={`group relative rounded-2xl border border-border-main bg-panel-bg overflow-hidden transition-all duration-300 hover:border-text-primary/60 hover:shadow-xl cursor-pointer flex flex-col justify-between ${
+        isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-8 pointer-events-none'
+      }`}
+      style={{ animationDelay: `${(index % 2) * 120}ms` }}
     >
       {/* Top: Project Website Preview Screenshot spanning the card width */}
       {project.image && (
@@ -59,7 +65,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenFullProjects }
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 rounded-full bg-neutral-800/90 dark:bg-neutral-800/90 border border-neutral-700/60 dark:border-neutral-700/60 text-neutral-300 dark:text-neutral-300 text-xs font-medium"
+                className="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800/90 border border-neutral-200/90 dark:border-neutral-700/60 text-neutral-700 dark:text-neutral-300 text-xs font-medium"
               >
                 {tag}
               </span>
@@ -76,7 +82,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenFullProjects }
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white hover:bg-neutral-200 text-neutral-950 text-xs sm:text-sm font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-neutral-950 text-xs sm:text-sm font-semibold shadow-xs transition-all duration-200 hover:scale-[1.02] cursor-pointer"
                 title="Visit Live Application"
               >
                 <ExternalLink className="w-3.5 h-3.5 stroke-[2.2]" />
@@ -88,7 +94,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenFullProjects }
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white hover:bg-neutral-200 text-neutral-950 text-xs sm:text-sm font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-neutral-950 text-xs sm:text-sm font-semibold shadow-xs transition-all duration-200 hover:scale-[1.02] cursor-pointer"
                 title="View Source Code"
               >
                 <svg
@@ -120,7 +126,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onOpenFullProjects }) => {
         <div
           id="projects-badge-platform"
           className={`relative inline-block rounded-lg bg-text-primary text-bg-main px-3 py-1 text-xs font-mono font-medium shadow-sm select-none ${
-            isInView ? 'animate-hero-badge' : ''
+            isInView ? 'animate-hero-badge' : 'opacity-0'
           }`}
           style={{ animationDelay: '100ms' }}
         >
@@ -133,7 +139,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onOpenFullProjects }) => {
 
         <p
           className={`text-sm sm:text-base text-text-secondary max-w-2xl leading-relaxed ${
-            isInView ? 'animate-hero-fade-up' : ''
+            isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
           }`}
           style={{ animationDelay: '180ms' }}
         >
@@ -157,12 +163,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onOpenFullProjects }) => {
       </div>
 
       {/* Vertical Project Cards Grid matching reference image */}
-      <div
-        className={`grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 ${
-          isInView ? 'animate-hero-fade-up' : ''
-        }`}
-        style={{ animationDelay: '260ms' }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
         {PROJECTS.map((project, index) => (
           <ProjectCard
             key={project.id}

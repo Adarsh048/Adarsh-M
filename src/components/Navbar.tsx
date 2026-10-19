@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Compass, BookOpen, Mail, FileText, MoonStar, Sun } from 'lucide-react';
+import { User, Compass, Mail, FileText, MoonStar, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { PROFILE } from '../data/portfolioData';
 
@@ -16,7 +16,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
       hero: '/',
       about: '/about',
       projects: '/projects',
-      blogs: '/blogs',
       contact: '/contact',
     };
 
@@ -39,7 +38,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
     if (sectionId === 'hero') return currentPath === '/';
     if (sectionId === 'about') return currentPath === '/about';
     if (sectionId === 'projects') return currentPath === '/projects';
-    if (sectionId === 'blogs') return currentPath === '/blogs';
     if (sectionId === 'contact') return currentPath === '/contact';
     return false;
   };
@@ -49,16 +47,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
       {/* ================= DESKTOP FLOATING PILL NAVBAR ================= */}
       <nav 
         id="desktop-nav"
-        className="hidden md:flex fixed top-6 inset-x-0 mx-auto max-w-fit rounded-full border border-neutral-800 bg-[#121212]/95 dark:bg-[#121212]/95 dark:border-neutral-800 border-neutral-800/80 backdrop-blur-xl shadow-lg shadow-black/40 z-[5000] px-6 py-2.5 items-center gap-6 sm:gap-7 transition-all duration-300 animate-nav-slide-down"
+        className="hidden md:flex fixed top-7 inset-x-0 mx-auto max-w-fit rounded-full border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-[#121212]/95 backdrop-blur-xl shadow-xl shadow-neutral-900/5 dark:shadow-black/50 z-[5000] px-7 py-3 items-center gap-7 sm:gap-8 transition-all duration-300 animate-nav-slide-down"
         aria-label="Desktop Navigation"
       >
         {/* Home Outline Icon with Arched Doorway */}
         <button
           onClick={() => handleNav('hero')}
-          className={`transition-colors cursor-pointer p-0.5 flex items-center justify-center ${
+          className={`transition-colors cursor-pointer p-1 flex items-center justify-center ${
             isCurrentActive('hero')
-              ? 'text-white dark:text-white'
-              : 'text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white'
+              ? 'text-neutral-950 dark:text-white'
+              : 'text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white'
           }`}
           aria-label="Home"
           title="Home"
@@ -70,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
             strokeWidth="1.8" 
             strokeLinecap="round" 
             strokeLinejoin="round" 
-            className="w-4 h-4 sm:w-[17px] sm:h-[17px]"
+            className="w-[19px] h-[19px] sm:w-5 sm:h-5"
           >
             <path d="M3 10.5L12 3l9 7.5V20a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 20v-9.5z" />
             <path d="M9 21.5v-6a3 3 0 016 0v6" />
@@ -80,10 +78,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
         {/* About */}
         <button
           onClick={() => handleNav('about')}
-          className={`text-sm font-medium tracking-normal transition-colors cursor-pointer ${
+          className={`text-[15px] font-medium tracking-normal transition-colors cursor-pointer ${
             isCurrentActive('about')
-              ? 'text-white font-semibold dark:text-white'
-              : 'text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white'
+              ? 'text-neutral-950 font-semibold dark:text-white'
+              : 'text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white'
           }`}
           title="About"
         >
@@ -93,36 +91,23 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
         {/* Projects */}
         <button
           onClick={() => handleNav('projects')}
-          className={`text-sm font-medium tracking-normal transition-colors cursor-pointer ${
+          className={`text-[15px] font-medium tracking-normal transition-colors cursor-pointer ${
             isCurrentActive('projects')
-              ? 'text-white font-semibold dark:text-white'
-              : 'text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white'
+              ? 'text-neutral-950 font-semibold dark:text-white'
+              : 'text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white'
           }`}
           title="Projects"
         >
           Projects
         </button>
 
-        {/* Blogs */}
-        <button
-          onClick={() => handleNav('blogs')}
-          className={`text-sm font-medium tracking-normal transition-colors cursor-pointer ${
-            isCurrentActive('blogs')
-              ? 'text-white font-semibold dark:text-white'
-              : 'text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white'
-          }`}
-          title="Blogs & Technical Notes"
-        >
-          Blogs
-        </button>
-
         {/* Reach */}
         <button
           onClick={() => handleNav('contact')}
-          className={`text-sm font-medium tracking-normal transition-colors cursor-pointer ${
+          className={`text-[15px] font-medium tracking-normal transition-colors cursor-pointer ${
             isCurrentActive('contact')
-              ? 'text-white font-semibold dark:text-white'
-              : 'text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white'
+              ? 'text-neutral-950 font-semibold dark:text-white'
+              : 'text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white'
           }`}
           title="Reach"
         >
@@ -134,27 +119,27 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
           href={PROFILE.resume}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-medium tracking-normal text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white transition-colors"
+          className="text-[15px] font-medium tracking-normal text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white transition-colors"
           title="Resume PDF"
         >
           Resume
         </a>
 
         {/* Subtle Vertical Divider */}
-        <div className="shrink-0 bg-neutral-700/70 dark:bg-neutral-800 w-[1px] h-3.5 mx-0.5" />
+        <div className="shrink-0 bg-neutral-200 dark:bg-neutral-800 w-[1px] h-4.5 mx-0.5" />
 
         {/* Moon with Sparkles Theme Toggle Button */}
         <button
           id="theme-toggle-btn"
           onClick={toggleTheme}
-          className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white transition-colors cursor-pointer p-0.5 flex items-center justify-center focus-visible:outline-none"
+          className="text-neutral-600 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white transition-colors cursor-pointer p-1 flex items-center justify-center focus-visible:outline-none"
           aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
           {theme === 'dark' ? (
-            <MoonStar className="w-4 h-4 sm:w-[17px] sm:h-[17px] transition-transform duration-300 hover:rotate-12" />
+            <MoonStar className="w-[19px] h-[19px] sm:w-5 sm:h-5 transition-transform duration-300 hover:rotate-12" />
           ) : (
-            <Sun className="w-4 h-4 sm:w-[17px] sm:h-[17px] transition-transform duration-300 hover:rotate-45" />
+            <Sun className="w-[19px] h-[19px] sm:w-5 sm:h-5 transition-transform duration-300 hover:rotate-45" />
           )}
         </button>
       </nav>
@@ -162,19 +147,19 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
       {/* ================= MOBILE FLOATING BOTTOM DOCK ================= */}
       <div className="block md:hidden">
         {/* Soft gradient fade on bottom */}
-        <div className="pointer-events-none fixed bottom-0 inset-x-0 h-20 bg-gradient-to-t from-bg-main to-transparent z-30" />
+        <div className="pointer-events-none fixed bottom-0 inset-x-0 h-24 bg-gradient-to-t from-bg-main to-transparent z-30" />
 
         <div 
           id="mobile-dock"
-          className="fixed inset-x-0 bottom-5 z-40 mx-auto w-max max-w-[calc(100vw-1.5rem)] px-3.5 py-2 rounded-full border border-neutral-800 bg-[#121212]/95 backdrop-blur-xl shadow-xl flex items-center gap-3 sm:gap-4 transition-colors animate-dock-slide-up"
+          className="fixed inset-x-0 bottom-5 z-40 mx-auto w-max max-w-[calc(100vw-1.5rem)] px-4 py-2.5 rounded-full border border-neutral-200/90 dark:border-neutral-800 bg-white/90 dark:bg-[#121212]/95 backdrop-blur-xl shadow-xl shadow-neutral-900/10 dark:shadow-black/60 flex items-center gap-3.5 sm:gap-4.5 transition-colors animate-dock-slide-up"
           aria-label="Mobile Navigation Dock"
         >
           <button
             onClick={() => handleNav('hero')}
-            className={`p-1.5 transition-colors cursor-pointer ${
+            className={`p-2 transition-colors cursor-pointer ${
               isCurrentActive('hero')
-                ? 'text-white'
-                : 'text-neutral-400 hover:text-white'
+                ? 'text-neutral-950 dark:text-white'
+                : 'text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white'
             }`}
             aria-label="Home"
             title="Home"
@@ -186,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
               strokeWidth="1.8" 
               strokeLinecap="round" 
               strokeLinejoin="round" 
-              className="w-4.5 h-4.5"
+              className="w-5 h-5"
             >
               <path d="M3 10.5L12 3l9 7.5V20a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 20v-9.5z" />
               <path d="M9 21.5v-6a3 3 0 016 0v6" />
@@ -195,79 +180,66 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
 
           <button
             onClick={() => handleNav('about')}
-            className={`p-1.5 transition-colors cursor-pointer ${
+            className={`p-2 transition-colors cursor-pointer ${
               isCurrentActive('about')
-                ? 'text-white'
-                : 'text-neutral-400 hover:text-white'
+                ? 'text-neutral-950 dark:text-white'
+                : 'text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white'
             }`}
             aria-label="About"
             title="About"
           >
-            <User className="w-4.5 h-4.5" />
+            <User className="w-5 h-5" />
           </button>
 
           <button
             onClick={() => handleNav('projects')}
-            className={`p-1.5 transition-colors cursor-pointer ${
+            className={`p-2 transition-colors cursor-pointer ${
               isCurrentActive('projects')
-                ? 'text-white'
-                : 'text-neutral-400 hover:text-white'
+                ? 'text-neutral-950 dark:text-white'
+                : 'text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white'
             }`}
             aria-label="Projects"
             title="Projects"
           >
-            <Compass className="w-4.5 h-4.5" />
-          </button>
-
-          <button
-            onClick={() => handleNav('blogs')}
-            className={`p-1.5 transition-colors cursor-pointer ${
-              isCurrentActive('blogs')
-                ? 'text-white'
-                : 'text-neutral-400 hover:text-white'
-            }`}
-            aria-label="Blogs"
-            title="Blogs"
-          >
-            <BookOpen className="w-4.5 h-4.5" />
+            <Compass className="w-5 h-5" />
           </button>
 
           <button
             onClick={() => handleNav('contact')}
-            className={`p-1.5 transition-colors cursor-pointer ${
+            className={`p-2 transition-colors cursor-pointer ${
               isCurrentActive('contact')
-                ? 'text-white'
-                : 'text-neutral-400 hover:text-white'
+                ? 'text-neutral-950 dark:text-white'
+                : 'text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white'
             }`}
             aria-label="Reach"
             title="Reach"
           >
-            <Mail className="w-4.5 h-4.5" />
+            <Mail className="w-5 h-5" />
           </button>
 
           <a
             href={PROFILE.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 text-neutral-400 hover:text-white transition-colors"
+            className="p-2 text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white transition-colors"
             aria-label="Resume"
             title="Resume"
           >
-            <FileText className="w-4.5 h-4.5" />
+            <FileText className="w-5 h-5" />
           </a>
 
-          <div className="shrink-0 bg-neutral-700/70 w-[1px] h-3.5 mx-0.5" />
+          <div className="shrink-0 bg-neutral-200 dark:bg-neutral-700/70 w-[1px] h-4.5 mx-0.5" />
 
           <button
             onClick={toggleTheme}
-            className="p-1.5 text-neutral-400 hover:text-white transition-colors cursor-pointer"
+            className="p-2 text-neutral-600 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white transition-colors cursor-pointer"
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? (
-              <MoonStar className="w-4.5 h-4.5" />
+              <MoonStar className="w-5 h-5" />
             ) : (
-              <Sun className="w-4.5 h-4.5" />
+              <Sun className="w-5 h-5" />
             )}
           </button>
         </div>

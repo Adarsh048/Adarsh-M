@@ -24,13 +24,14 @@
     <script>
       (function() {
         try {
+          var themeVersion = localStorage.getItem('theme_version');
           var saved = localStorage.getItem('theme');
-          var theme = 'dark';
-          if (saved === 'light' || saved === 'dark') {
-            theme = saved;
-          } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-            theme = 'light';
+          if (themeVersion !== 'v2') {
+            saved = 'dark';
+            localStorage.setItem('theme', 'dark');
+            localStorage.setItem('theme_version', 'v2');
           }
+          var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
           if (theme === 'dark') {
             document.documentElement.classList.add('dark');
             document.documentElement.setAttribute('data-theme', 'dark');

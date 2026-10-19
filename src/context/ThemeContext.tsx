@@ -15,11 +15,17 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     try {
+      const themeVersion = localStorage.getItem('theme_version');
+      if (themeVersion !== 'v2') {
+        localStorage.setItem('theme', 'dark');
+        localStorage.setItem('theme_version', 'v2');
+        return 'dark';
+      }
       const saved = localStorage.getItem('theme');
       if (saved === 'light' || saved === 'dark') {
         return saved;
       }
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      return 'dark';
     } catch {
       return 'dark';
     }
@@ -40,6 +46,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
     try {
       localStorage.setItem('theme', targetTheme);
+      localStorage.setItem('theme_version', 'v2');
     } catch {}
   };
 

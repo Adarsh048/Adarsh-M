@@ -34,17 +34,17 @@ export const About: React.FC<AboutProps> = ({ onOpenFullAbout }) => {
       <div className="space-y-3">
         <p
           className={`text-base sm:text-[16px] text-text-primary font-medium leading-relaxed ${
-            isInView ? 'animate-hero-fade-up' : ''
+            isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
           }`}
-          style={{ animationDelay: '400ms' }}
+          style={{ animationDelay: '300ms' }}
         >
           I'm a <span className="font-semibold text-text-primary">Full-Stack Software Engineer</span> building scalable web platforms, cross-platform mobile apps, distributed backends, and AI products.
         </p>
         <p
           className={`text-sm sm:text-[15px] text-text-secondary leading-relaxed ${
-            isInView ? 'animate-hero-fade-up' : ''
+            isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
           }`}
-          style={{ animationDelay: '650ms' }}
+          style={{ animationDelay: '500ms' }}
         >
           My core stack centers on <span className="text-text-primary font-medium">React, JavaScript, TypeScript, Flutter, Node.js, Express.js, Python (FastAPI)</span>, and <span className="text-text-primary font-medium">MongoDB/PostgreSQL</span>—with specialized production experience in <span className="text-text-primary font-medium">REST APIs</span>, real-time <span className="text-text-primary font-medium">WebSockets</span>, <span className="text-text-primary font-medium">offline-first sync</span> (Dexie.js), and grounded <span className="text-text-primary font-medium">RAG pipelines</span>.
         </p>
@@ -54,9 +54,9 @@ export const About: React.FC<AboutProps> = ({ onOpenFullAbout }) => {
       {onOpenFullAbout && (
         <div
           className={`pt-5 mt-2 border-t border-border-subtle/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 ${
-            isInView ? 'animate-hero-fade-up' : ''
+            isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
           }`}
-          style={{ animationDelay: '900ms' }}
+          style={{ animationDelay: '700ms' }}
         >
           {/* Live Availability Status */}
           <div className="flex items-center gap-2 text-xs font-mono text-text-muted">

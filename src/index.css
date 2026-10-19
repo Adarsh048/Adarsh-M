@@ -4,19 +4,6 @@
 
 @layer base {
   :root,
-  [data-theme="light"] {
-    --bg-main: #FFFFFF;
-    --panel-bg: #FFFFFF;
-    --panel-hover: #F8F8F8;
-    --text-primary: #000000;
-    --text-secondary: #666666;
-    --text-muted: #888888;
-    --border-main: #E5E5E5;
-    --border-subtle: #EEEEEE;
-    --badge-bg: #F5F5F5;
-    --badge-border: #E5E5E5;
-  }
-
   .dark,
   [data-theme="dark"] {
     --bg-main: #000000;
@@ -31,13 +18,26 @@
     --badge-border: #303030;
   }
 
+  [data-theme="light"] {
+    --bg-main: #FBFBFC;
+    --panel-bg: #FFFFFF;
+    --panel-hover: #F4F4F6;
+    --text-primary: #09090B;
+    --text-secondary: #52525B;
+    --text-muted: #71717A;
+    --border-main: #E4E4E7;
+    --border-subtle: #F1F1F4;
+    --badge-bg: #F4F4F5;
+    --badge-border: #E4E4E7;
+  }
+
   * {
     border-color: var(--border-main);
   }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-padding-top: 100px;
     background-color: var(--bg-main);
     overflow-x: hidden;
   }
@@ -555,46 +555,133 @@
 
 .animate-letter-reveal {
   display: inline-block;
-  animation: heroLetterReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: heroLetterReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity, filter;
 }
 
 .animate-word-reveal {
   display: inline-block;
-  animation: heroWordReveal 1.25s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: heroWordReveal 1.25s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity, filter;
 }
 
 .animate-hero-badge {
-  animation: heroBadgeReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: heroBadgeReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity, filter;
 }
 
 .animate-hero-fade-up {
-  animation: heroFadeUp 1.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: heroFadeUp 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity, filter;
 }
 
 .animate-hero-card {
-  animation: heroCardReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: heroCardReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity, filter;
 }
 
 .animate-nav-slide-down {
-  animation: navSlideDown 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: navSlideDown 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity, filter;
 }
 
 .animate-dock-slide-up {
-  animation: dockSlideUp 1.25s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: dockSlideUp 1.25s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity, filter;
 }
 
 .animate-divider-expand {
   transform-origin: left center;
-  animation: dividerExpand 1.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: dividerExpand 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity;
 }
+
+/* =========================================================================
+   Mobile View: Luxurious Slow Scroll-Reveal Entrance System
+   Tuned so contents coming in on scroll down feel slow, smooth,
+   and cinematic on handheld mobile viewports (<= 768px).
+   ========================================================================= */
+@media (max-width: 768px) {
+  @keyframes heroFadeUpMobile {
+    0% {
+      opacity: 0;
+      transform: translateY(32px);
+      filter: blur(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes heroCardRevealMobile {
+    0% {
+      opacity: 0;
+      transform: translateY(36px) scale(0.97);
+      filter: blur(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes heroLetterRevealMobile {
+    0% {
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+  }
+
+  /* Make mobile animations noticeably slow, fluid, and luxurious */
+  .animate-hero-fade-up {
+    animation-name: heroFadeUpMobile !important;
+    animation-duration: 1.85s !important;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    animation-fill-mode: both !important;
+  }
+
+  .animate-hero-card {
+    animation-name: heroCardRevealMobile !important;
+    animation-duration: 1.95s !important;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    animation-fill-mode: both !important;
+  }
+
+  .animate-letter-reveal {
+    animation-name: heroLetterRevealMobile !important;
+    animation-duration: 1.4s !important;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    animation-fill-mode: both !important;
+  }
+
+  .animate-word-reveal {
+    animation-duration: 1.55s !important;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    animation-fill-mode: both !important;
+  }
+
+  .animate-divider-expand {
+    animation-duration: 1.65s !important;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    animation-fill-mode: both !important;
+  }
+
+  .animate-hero-badge {
+    animation-duration: 1.5s !important;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    animation-fill-mode: both !important;
+  }
+}
+
 
 /* Telemetry Stream Equalizer Animation */
 @keyframes telemetryPulse {

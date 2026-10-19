@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
       ref={ref}
       id="portfolio-footer"
       className={`pt-6 pb-24 md:pb-12 border-t border-border-main text-xs text-text-secondary font-mono relative ${
-        isInView ? 'animate-hero-fade-up' : ''
+        isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
       }`}
       style={{ animationDelay: '100ms' }}
     >

@@ -46,7 +46,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
         <div
           id="contact-badge-platform"
           className={`relative inline-block rounded-lg bg-text-primary text-bg-main px-3 py-1 text-xs font-mono font-medium ${
-            isInView ? 'animate-hero-badge' : ''
+            isInView ? 'animate-hero-badge' : 'opacity-0'
           }`}
           style={{ animationDelay: '100ms' }}
         >
@@ -59,7 +59,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
 
         <p
           className={`text-sm sm:text-base text-text-secondary max-w-2xl leading-relaxed ${
-            isInView ? 'animate-hero-fade-up' : ''
+            isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
           }`}
           style={{ animationDelay: '180ms' }}
         >
@@ -69,7 +69,9 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
 
       {/* Main Contact Container */}
       <div
-        className={`w-full max-w-2xl sm:max-w-3xl mx-auto space-y-6 ${isInView ? 'animate-hero-fade-up' : ''}`}
+        className={`w-full max-w-2xl sm:max-w-3xl mx-auto space-y-6 ${
+          isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-8'
+        }`}
         style={{ animationDelay: '260ms' }}
       >
         
@@ -113,7 +115,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
 
             <a
               href={`mailto:${PROFILE.email}?subject=${encodeURIComponent("Software Engineering Opportunity — Adarsh M")}`}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold bg-text-primary text-bg-main hover:opacity-85 transition-opacity"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 hover:opacity-85 transition-opacity"
             >
               <Send className="w-3.5 h-3.5" />
               <span>Compose</span>
@@ -122,7 +124,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
         </div>
 
         {/* Functional Interactive Direct Message Form */}
-        <div className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg space-y-4">
+        <div className="p-5 sm:p-6 rounded-2xl border border-border-main bg-panel-bg space-y-4 shadow-xs">
           <div className="flex items-center justify-between border-b border-border-subtle pb-3">
             <div className="flex items-center gap-2">
               <MessageSquare className="w-4 h-4 text-text-primary" />
@@ -169,7 +171,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Jane Doe"
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-bg-main text-text-primary focus:outline-none focus:border-text-primary transition-colors"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
                   />
                 </div>
 
@@ -183,7 +185,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="jane@company.com"
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-bg-main text-text-primary focus:outline-none focus:border-text-primary transition-colors"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
                   />
                 </div>
               </div>
@@ -197,7 +199,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="Software Engineering Opportunity / Project Discussion"
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-bg-main text-text-primary focus:outline-none focus:border-text-primary transition-colors"
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors"
                 />
               </div>
 
@@ -211,13 +213,13 @@ export const Contact: React.FC<ContactProps> = ({ onOpenFullContact }) => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Hi Adarsh, I came across your portfolio and would love to chat about..."
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-bg-main text-text-primary focus:outline-none focus:border-text-primary transition-colors resize-none"
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-border-main bg-neutral-50/70 dark:bg-bg-main text-text-primary focus:bg-white dark:focus:bg-bg-main focus:outline-none focus:border-text-primary transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-bold bg-text-primary text-bg-main hover:opacity-85 transition-opacity"
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-bold bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 hover:opacity-85 transition-opacity"
               >
                 <span>Dispatch Email</span>
                 <Send className="w-3.5 h-3.5" />

@@ -4,15 +4,20 @@ interface UseInViewOptions {
   threshold?: number;
   rootMargin?: string;
   triggerOnce?: boolean;
+  initialInView?: boolean;
 }
 
 export function useInView<T extends HTMLElement = HTMLDivElement>({
-  threshold = 0,
-  rootMargin = '100px 0px 100px 0px',
+  threshold,
+  rootMargin,
   triggerOnce = true,
+  initialInView = false,
 }: UseInViewOptions = {}) {
   const ref = useRef<T | null>(null);
-  const [isInView, setIsInView] = useState(true);
+  const [isInView, setIsInView] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return true;
+    return initialInView;
+  });
 
   useEffect(() => {
     const element = ref.current;
@@ -22,6 +27,18 @@ export function useInView<T extends HTMLElement = HTMLDivElement>({
       setIsInView(true);
       return;
     }
+
+    // Check if the element is already within/above the visible viewport on initial load
+    const rect = element.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.92) {
+      setIsInView(true);
+      if (triggerOnce) return;
+    }
+
+    const isMobile = window.innerWidth <= 768;
+    // On mobile view, trigger right as the content enters the bottom edge of the viewport
+    const effectiveRootMargin = rootMargin ?? (isMobile ? '0px 0px -15px 0px' : '0px 0px -40px 0px');
+    const effectiveThreshold = threshold ?? (isMobile ? 0.04 : 0.08);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -34,7 +51,7 @@ export function useInView<T extends HTMLElement = HTMLDivElement>({
           setIsInView(false);
         }
       },
-      { threshold, rootMargin }
+      { threshold: effectiveThreshold, rootMargin: effectiveRootMargin }
     );
 
     observer.observe(element);
@@ -46,3 +63,4 @@ export function useInView<T extends HTMLElement = HTMLDivElement>({
 
   return { ref, isInView };
 }
+

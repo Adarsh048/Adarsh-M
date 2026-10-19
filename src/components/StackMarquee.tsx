@@ -437,7 +437,7 @@ export const StackMarquee: React.FC<StackMarqueeProps> = () => {
           ========================================================================= */}
       <div
         className={`relative flex flex-col items-center justify-center overflow-hidden py-4 sm:py-6 space-y-4 sm:space-y-5 ${
-          isInView ? 'animate-hero-fade-up' : ''
+          isInView ? 'animate-hero-fade-up' : 'opacity-0 translate-y-6'
         }`}
         style={{ animationDelay: '200ms' }}
       >
