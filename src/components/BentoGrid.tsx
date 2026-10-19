@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { 
   ArrowUpRight, 
   ArrowRight, 
-  Copy,
-  Check,
-  Mail,
-  Terminal,
-  TrendingUp
+  Copy, 
+  Check, 
+  Mail, 
+  TrendingUp 
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, XIcon } from './Icons';
 import { PROFILE } from '../data/portfolioData';
